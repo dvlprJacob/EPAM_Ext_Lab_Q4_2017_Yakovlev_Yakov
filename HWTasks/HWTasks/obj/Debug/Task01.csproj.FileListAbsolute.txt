@@ -1,6 +1,0 @@
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\bin\Debug\HWTasks.exe.config
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\bin\Debug\HWTasks.exe
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\bin\Debug\HWTasks.pdb
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\obj\Debug\Task01.csprojResolveAssemblyReference.cache
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\obj\Debug\HWTasks.exe
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\HWTasks\obj\Debug\HWTasks.pdb

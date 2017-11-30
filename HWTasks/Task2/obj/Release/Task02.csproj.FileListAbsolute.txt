@@ -1,5 +1,0 @@
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\Task2\bin\Release\Task2.exe.config
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\Task2\bin\Release\Task2.exe
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\Task2\bin\Release\Task2.pdb
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\Task2\obj\Release\Task2.exe
-C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\EPAM_Ext_Lab_Q4_2017_Yakovlev_Yakov\HWTasks\Task2\obj\Release\Task2.pdb
