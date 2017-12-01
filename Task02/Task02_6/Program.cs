@@ -8,7 +8,7 @@ namespace Task02_6
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args)//todo pn реализовать таким образом, чтобы нужно было вводить только 1-3. Ну, и ключ для выхода.
         {
             Subtask6 tmp = new Subtask6();
             Console.WriteLine(tmp);
@@ -20,7 +20,7 @@ namespace Task02_6
             {
                 var parsed = commmand.Split(' ');
 
-                switch (parsed.Last())
+                switch (parsed.Last())//todo pn не работает логика, даже если вводишь "on"
                 {
                     case "on":
                         if (tmp.IsExist(parsed.First()))

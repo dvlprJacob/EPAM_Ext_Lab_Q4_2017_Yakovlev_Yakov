@@ -11,7 +11,7 @@ namespace Task2_05
     /// </summary>
     internal class Subtask5
     {
-        public override string ToString()
+        public override string ToString()//todo pn частное решение. 
         {
             int i = 0;
             int sum = 0;

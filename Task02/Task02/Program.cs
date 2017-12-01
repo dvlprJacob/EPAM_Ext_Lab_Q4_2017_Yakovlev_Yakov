@@ -20,9 +20,9 @@ namespace Task02_1
                 if (int.TryParse(sides[0], out a) && int.TryParse(sides.Last(), out b))
                 {
                     Rec = new Rectangle(a, b);
-                    Console.WriteLine("Area of rectangle with sides {0} and {1} equals {2}", a, b, Rec.Area);
+                    Console.WriteLine("Area of rectangle with sides {0} and {1} equals {2}", a, b, Rec.Area);//todo pn не понятно, что нужно пробелом разделять
                     Console.Write("Try again ? Input 'Y' for repeat or other key for exit   ");
-                    if (Console.ReadLine() == "Y")
+                    if (Console.ReadLine() == "Y")//todo pn хардкод
                     {
                         Console.Clear();
                         Main(args);
@@ -33,8 +33,8 @@ namespace Task02_1
 
                 Console.WriteLine("Incorrect input, sides must be integer values");
                 Console.Write("Try again ? Y/N   ");
-                if (Console.ReadLine() == "Y")
-                {
+                if (Console.ReadLine() == "Y")//todo pn хардкод
+				{
                     Main(args);
                 }
                 return;
