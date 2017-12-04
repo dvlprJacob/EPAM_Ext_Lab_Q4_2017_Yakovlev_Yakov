@@ -4,19 +4,13 @@
 
     internal class Program
     {
-        public static void Main(string[] args)//todo pn реализовать таким образом, чтобы нужно было вводить только 1-3. Ну, и ключ для выхода.
+        public static void Main(string[] args)
         {
             try
             {
-<<<<<<< HEAD
                 Subtask6 tmp = new Subtask6();
                 string command = string.Empty;
                 while (command != "0")
-=======
-                var parsed = commmand.Split(' ');
-
-                switch (parsed.Last())//todo pn не работает логика, даже если вводишь "on"
->>>>>>> deba0da69d17d4647861bb597c490fe854665633
                 {
                     string[] accents = new string[] { "Bold", "Italic", "Underline" };
                     Console.WriteLine(tmp);

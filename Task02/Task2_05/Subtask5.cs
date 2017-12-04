@@ -5,7 +5,6 @@
     /// </summary>
     internal class Subtask5
     {
-<<<<<<< HEAD
         public Subtask5(int n)
         {
             this.N = n;
@@ -14,9 +13,6 @@
         public int N { get; set; }
 
         public override string ToString()
-=======
-        public override string ToString()//todo pn частное решение. 
->>>>>>> deba0da69d17d4647861bb597c490fe854665633
         {
             int i = 0;
             int sum = 0;
