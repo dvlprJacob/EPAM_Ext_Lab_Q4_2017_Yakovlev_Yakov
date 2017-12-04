@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-
-namespace Task02_6
+﻿namespace Task02_6
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Для выделения текстовой надписи можно использовать выделение жирным, курсивом и подчёркиванием.
     /// Предложите способ хранения информации о выделении надписи и напишите программу,
@@ -15,77 +10,49 @@ namespace Task02_6
     internal class Subtask6
     {
         // Массив доступных выделений
-        private readonly string[] Accentuation = { "Bold", "Italic", "Underline" };
-
-        // Поле для хранения статуса [on/off]
-        private readonly bool[] AccentuationStatus = { false, false, false };
+        private List<string> Accentuation;
 
         public Subtask6()
         {
+            this.Accentuation = new List<string>();
         }
 
-        /// <summary>
-        /// Конструктор с перечнем включенных выделений
-        /// </summary>
-        /// <param name="activeAccents"> Список выделений</param>
-        public Subtask6(string[] activeAccents)
+        public bool Exist(string acc)
         {
-            if (activeAccents.Length == 3)
+            if (this.Accentuation.Exists(a => a == acc))
             {
-                for (int i = 0; i < 3; i++)
-                    if (Accentuation.Contains(activeAccents[i]))
-                        AccentuationStatus[i] = true;
-            }
-        }
-
-        /// <summary>
-        /// Проверка на наличие параметра в списке выделений
-        /// </summary>
-        /// <param name="accent"> Выделение</param>
-        /// <returns></returns>
-        public bool IsExist(string accent)
-        {
-            if (Accentuation.Where(acc => acc == accent).Count() > 0)
                 return true;
+            }
+
             return false;
         }
 
-        /// <summary>
-        /// Активация выделения
-        /// </summary>
-        /// <param name="accent"> Выделение</param>
-        public void ActivateAccent(string accent)
+        public void AddAccent(string accent)
         {
-            for (int i = 0; i < 3; i++)
+            if (!this.Accentuation.Exists(a => a == accent))
             {
-                if (Accentuation[i] == accent)
-                    AccentuationStatus[i] = true;
+                this.Accentuation.Add(accent);
             }
         }
 
-        /// <summary>
-        /// Деактивация выделения
-        /// </summary>
-        /// <param name="accent"> Выделение</param>
-        public void DeactivateAccent(string accent)
+        public void PopAccent(string accent)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                if (Accentuation[i] == accent)
-                    AccentuationStatus[i] = false;
-            }
+            this.Accentuation.Remove(accent);
         }
 
         public override string ToString()
         {
-            string tmp = "Accentuations : ";
-            for (int i = 0; i < 3; i++)
+            string tmp = "Параметры надписи : ";
+            if (this.Accentuation.Count == 0)
             {
-                if (AccentuationStatus[i] == true)
-                    tmp += Accentuation[i] + " [ active ]; ";
-                else
-                    tmp += Accentuation[i] + " [ inactive ]; ";
+                return string.Format("{0}None", tmp);
             }
+
+            for (int i = 0; i < this.Accentuation.Count; i++)
+            {
+                tmp += this.Accentuation[i] + " ";
+            }
+
             return tmp;
         }
     }

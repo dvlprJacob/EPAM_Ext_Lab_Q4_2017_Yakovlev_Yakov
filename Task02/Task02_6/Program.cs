@@ -1,65 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task02_6
+﻿namespace Task02_6
 {
+    using System;
+
     internal class Program
     {
         public static void Main(string[] args)
         {
-            Subtask6 tmp = new Subtask6();
-            Console.WriteLine(tmp);
-            string commmand = "";
-            Console.Write("Input accentuation and on/off for activate or deactivate or 0 for exit, 'c' for clear console,\n'print' for write on console\n   ");
-            commmand = Console.ReadLine();
-
-            while (commmand != "0")
+            try
             {
-                var parsed = commmand.Split(' ');
-
-                switch (parsed.Last())
+                Subtask6 tmp = new Subtask6();
+                string command = string.Empty;
+                while (command != "0")
                 {
-                    case "on":
-                        if (tmp.IsExist(parsed.First()))
-                        {
-                            tmp.ActivateAccent(parsed.First());
-                            Console.WriteLine(tmp);
-                        }
-                        else
-                            Console.WriteLine("{0} accent is not exist", parsed.First());
-                        break;
+                    string[] accents = new string[] { "Bold", "Italic", "Underline" };
+                    Console.WriteLine(tmp);
+                    Console.WriteLine("Введите :\n1: {0}\n2: {1}\n3: {2}\n0 для выхода", accents[0], accents[1], accents[2]);
+                    command = Console.ReadLine();
+                    switch (command)
+                    {
+                        case "1":
+                            if (tmp.Exist(accents[0]))
+                            {
+                                tmp.PopAccent(accents[0]);
+                            }
+                            else
+                            {
+                                tmp.AddAccent(accents[0]);
+                            }
 
-                    case "off":
-                        if (tmp.IsExist(parsed.First()))
-                        {
-                            tmp.DeactivateAccent(parsed.First());
-                            Console.WriteLine(tmp);
-                        }
-                        else
-                            Console.WriteLine("{0} accent is not exist", parsed.First());
-                        break;
+                            break;
 
-                    case "print":
-                        Console.WriteLine(tmp);
-                        break;
+                        case "2":
+                            if (tmp.Exist(accents[1]))
+                            {
+                                tmp.PopAccent(accents[1]);
+                            }
+                            else
+                            {
+                                tmp.AddAccent(accents[1]);
+                            }
 
-                    case "c":
-                        Console.Clear();
-                        break;
+                            break;
 
-                    default:
-                        Console.WriteLine("Uncknown command");
-                        break;
+                        case "3":
+                            if (tmp.Exist(accents[2]))
+                            {
+                                tmp.PopAccent(accents[2]);
+                            }
+                            else
+                            {
+                                tmp.AddAccent(accents[2]);
+                            }
+
+                            break;
+
+                        case "0":
+                            Console.WriteLine("Press any key for exit");
+                            Console.ReadKey();
+                            return;
+
+                        default:
+                            Console.WriteLine("Incorrect command, try again");
+                            break;
+                    }
                 }
-
-                Console.Write("Input accentuation and on/off for activate or deactivate or 0 for exit, 'c' for clar console\n   ");
-                commmand = Console.ReadLine();
             }
-            Console.Write("Press any key for exit   ");
-            Console.ReadKey();
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "\nPress any key for exit");
+                Console.ReadKey();
+                return;
+            }
         }
     }
 }
