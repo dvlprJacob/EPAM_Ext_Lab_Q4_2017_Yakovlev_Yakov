@@ -57,8 +57,8 @@
         /// Возвращает максимальное значение в массиве
         /// </summary>
         /// <returns></returns>
-        public T Find_max_value()
-        {
+        public T Find_max_value()//todo pn некорректное имя 
+		{
             if (IsNull())
             {
                 throw new NullReferenceException();
@@ -80,8 +80,8 @@
         /// Возвращает минимальное значение в массиве
         /// </summary>
         /// <returns></returns>
-        public T Find_min_value()
-        {
+        public T Find_min_value()//todo pn некорректное имя 
+		{
             if (IsNull())
             {
                 throw new NullReferenceException();
@@ -141,8 +141,8 @@
         /// Генерирует рандомное строковое значение длины от 1 до 10 символами латиницы и цифр
         /// </summary>
         /// <returns></returns>
-        private static string Generate_random_string_value()
-        {
+        private static string Generate_random_string_value()//todo pn некорректное имя 
+		{
             Random rand = new Random();
             const string pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var builder = new StringBuilder();
@@ -162,8 +162,8 @@
         /// Генерирует рандомное символьное значение из множества символов латиницы и цифр
         /// </summary>
         /// <returns></returns>
-        private static char Generate_random_char_value()
-        {
+        private static char Generate_random_char_value()//todo pn некорректное имя 
+		{
             Random rand = new Random();
             const string pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             return pool[rand.Next(0, pool.Length)];
@@ -173,8 +173,8 @@
         /// Генерирует рандомное целочисленное значением из интервала от -100 до 100
         /// </summary>
         /// <returns></returns>
-        private static int Generate_random_int_value()
-        {
+        private static int Generate_random_int_value()//todo pn некорректное имя 
+		{
             Random rand = new Random();
             return rand.Next(-100, 101);
         }
@@ -184,8 +184,8 @@
         /// </summary>
         /// <param name="arrayLength"> Длина массива</param>
         /// <returns></returns>
-        public static MyArray<string> MyArray_with_random_string_values(int arrayLength)
-        {
+        public static MyArray<string> MyArray_with_random_string_values(int arrayLength)//todo pn некорректное имя 
+		{
             List<string> values = new List<string>(arrayLength);
             for (int i = 0; i < arrayLength; i++)
             {
@@ -200,8 +200,8 @@
         /// </summary>
         /// <param name="arrayLength"> Длина массива</param>
         /// <returns></returns>
-        public static MyArray<int> MyArray_with_random_int_values(int arrayLength = 0)
-        {
+        public static MyArray<int> MyArray_with_random_int_values(int arrayLength = 0)//todo pn некорректное имя 
+		{
             if (arrayLength == 0)
             {
                 return new MyArray<int>();
@@ -222,8 +222,8 @@
         /// </summary>
         /// <param name="arrayLength"> Длина массива</param>
         /// <returns></returns>
-        public static MyArray<char> MyArray_with_random_char_values(int arrayLength = 0)
-        {
+        public static MyArray<char> MyArray_with_random_char_values(int arrayLength = 0)//todo pn некорректное имя 
+		{
             if (arrayLength == 0)
             {
                 return new MyArray<char>();
@@ -267,8 +267,8 @@
         /// </summary>
         /// <param name="value"> Присваиваемое значение</param>
         /// <param name="index"> Индекс элемента массива</param>
-        public void Set_value(T value, int index)
-        {
+        public void Set_value(T value, int index)//todo pn некорректное имя 
+		{
             if (IsNull())
             {
                 throw new NullReferenceException();

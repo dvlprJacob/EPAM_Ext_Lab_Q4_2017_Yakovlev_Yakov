@@ -45,8 +45,8 @@ namespace Task03_2
                 {
                     for (int k = 0; k < p; k++)
                     {
-                        array3d[i, j, k] = rand.Next(-1000, 1000);
-                    }
+                        array3d[i, j, k] = rand.Next(-1000, 1000);//todo pn хардкод
+					}
                 }
             }
 

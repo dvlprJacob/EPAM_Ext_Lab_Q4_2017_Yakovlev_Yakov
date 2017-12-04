@@ -27,8 +27,8 @@ namespace Task03_3
             array = new int[length];
             for (int i = 0; i < length; i++)
             {
-                array[i] = rand.Next(-100, 100);
-            }
+                array[i] = rand.Next(-100, 100);//todo pn хардкод
+			}
         }
 
         /// <summary>
