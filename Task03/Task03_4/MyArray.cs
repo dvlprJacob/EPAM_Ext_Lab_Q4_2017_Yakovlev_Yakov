@@ -5,8 +5,6 @@ namespace Task03_4
 {
     internal class MyArray
     {
-        public double[,] array { get; set; }
-
         public MyArray()
         {
         }
@@ -19,15 +17,17 @@ namespace Task03_4
         public MyArray(int rowLength, int colLength)
         {
             Random rand = new Random();
-            array = new double[rowLength, colLength];
+            this.Values = new double[rowLength, colLength];
             for (int i = 0; i < rowLength; i++)
             {
                 for (int j = 0; j < colLength; j++)
                 {
-                    array[i, j] = Math.Round(rand.NextDouble(), 2) + rand.Next(-100, 100);
+                    this.Values[i, j] = Math.Round(rand.NextDouble(), 2) + rand.Next(-100, 100);
                 }
             }
         }
+
+        public double[,] Values { get; set; }
 
         /// <summary>
         /// Возвращает сумму элементов матрицы, сумма индексов которого четна
@@ -35,17 +35,17 @@ namespace Task03_4
         /// <returns></returns>
         public double Even_positions_elements_sum()
         {
-            if (array.Length == 0)
+            if (this.Values.Length == 0)
             {
                 return 0;
             }
 
             double result = 0;
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < this.Values.GetLength(0); i++)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < this.Values.GetLength(1); j++)
                 {
-                    result += ((i + j) % 2 == 0) ? array[i, j] : 0;
+                    result += ((i + j) % 2 == 0) ? this.Values[i, j] : 0;
                 }
             }
 
@@ -58,18 +58,19 @@ namespace Task03_4
         /// <returns></returns>
         public override string ToString()
         {
-            if (array.Length == 0)
+            if (this.Values.Length == 0)
             {
-                return "Array is empty";
+                return "Values is empty";
             }
 
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < this.Values.GetLength(0); i++)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < this.Values.GetLength(1); j++)
                 {
-                    builder.Append(String.Format("{0,8}  ", array[i, j]));
+                    builder.Append(string.Format("{0,8}  ", this.Values[i, j]));
                 }
+
                 builder.AppendLine();
             }
 

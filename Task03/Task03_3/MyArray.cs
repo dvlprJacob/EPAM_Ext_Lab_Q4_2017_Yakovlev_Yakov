@@ -5,31 +5,38 @@ namespace Task03_3
 {
     internal class MyArray
     {
-        public int[] array { get; set; }
-
         public MyArray()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый целочисленный массив заданной длины случайными величинами
+        /// Инициализирует новый целочисленный массив заданной длины случайными величинами из указанного диапазона
         /// </summary>
         /// <param name="length"></param>
-        public MyArray(int length)
+        public MyArray(int length, int minValue, int maxValue)
         {
-            if (length < 0)
+            try
             {
-                this.array = null;
-                return;
-            }
+                if (length < 0)
+                {
+                    this.Values = null;
+                    return;
+                }
 
-            Random rand = new Random();
-            array = new int[length];
-            for (int i = 0; i < length; i++)
+                Random rand = new Random();
+                this.Values = new int[length];
+                for (int i = 0; i < length; i++)
+                {
+                    this.Values[i] = rand.Next(minValue, maxValue);
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
             {
-                array[i] = rand.Next(-100, 100);//todo pn хардкод
-			}
+                Console.WriteLine(e.Message);
+            }
         }
+
+        public int[] Values { get; set; }
 
         /// <summary>
         /// Возвращает сумму положительных элементов массива
@@ -37,30 +44,31 @@ namespace Task03_3
         /// <returns></returns>
         public int Non_negative_elements_sum()
         {
-            if (array.Length > 0)
+            if (this.Values.Length > 0)
             {
-                int result = (array[0] > 0) ? array[0] : 0;
-                for (int i = 1; i < array.Length; i++)
+                int result = (this.Values[0] > 0) ? this.Values[0] : 0;
+                for (int i = 1; i < this.Values.Length; i++)
                 {
-                    result += (array[i] > 0) ? array[i] : 0;
+                    result += (this.Values[i] > 0) ? this.Values[i] : 0;
                 }
 
                 return result;
             }
+
             return 0;
         }
 
         public override string ToString()
         {
-            if (array.Length == 0)
+            if (this.Values.Length == 0)
             {
-                return "Array is empty";
+                return "Values is empty";
             }
 
             StringBuilder builder = new StringBuilder();
-            foreach (var el in array)
+            foreach (var el in this.Values)
             {
-                builder.Append(String.Format("{0}  ", el));
+                builder.Append(string.Format("{0}  ", el));
             }
 
             return builder.ToString();

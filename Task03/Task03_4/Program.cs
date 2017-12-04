@@ -34,6 +34,7 @@ namespace Task03_4
                                 {
                                     Console.WriteLine("Incorrect input string, try again");
                                 }
+
                                 break;
 
                             case false:
