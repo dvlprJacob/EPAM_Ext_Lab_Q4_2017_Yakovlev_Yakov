@@ -15,13 +15,13 @@ namespace Task04_3
         {
             var temp = string.Empty;
             Stopwatch sw = new Stopwatch();
-            for (int i = 0; i < 3; i++)
-            {
+            for (int i = 0; i < 3; i++)//todo pn хардкод
+			{
                 sw.Start();
                 for (int j = 0; j < n; j++)
                 {
-                    temp += '*';
-                }
+                    temp += '*';//todo pn хардкод
+				}
 
                 sw.Stop();
                 temp = string.Empty;
@@ -39,13 +39,13 @@ namespace Task04_3
         {
             StringBuilder temp = new StringBuilder();
             Stopwatch sw = new Stopwatch();
-            for (int i = 0; i < 3; i++)
-            {
+            for (int i = 0; i < 3; i++)//todo pn хардкод
+			{
                 sw.Start();
                 for (int j = 0; j < n; j++)
                 {
-                    temp.Append('*');
-                }
+                    temp.Append('*');//todo pn хардкод
+				}
 
                 sw.Stop();
                 temp.Clear();
