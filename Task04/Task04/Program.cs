@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task04
+﻿namespace Task04
 {
+    using System;
+
     internal class Program
     {
+        private const string exit = "0";
+        private const string empty = "";
+
         private static void Main(string[] args)
         {
             string text = string.Empty;
-            while (text != "0")
+
+            while (text != exit)
             {
                 Console.WriteLine("Input text for calculate average length of words, 0 for exit");
                 text = Console.ReadLine();
                 switch (text)
                 {
-                    case "":
+                    case empty:
                         Console.WriteLine("You input empty string, try again");
                         break;
 
-                    case "0"://todo pn хардкод
-						Console.WriteLine("Press any key for exit");
+                    case exit:
+                        Console.WriteLine("Press any key for exit");
                         Console.ReadKey();
                         return;
 
@@ -35,8 +35,9 @@ namespace Task04
         }
     }
 }
-/*todo pn 
- 
+
+/*todo pn
+
 ------ StyleCop 5.0 (build 5.0.6419.0) started ------
 
 Pass 1:   Task04 - \MyString.cs

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Task04
+﻿namespace Task04
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     internal class MyString
     {
         private string text;

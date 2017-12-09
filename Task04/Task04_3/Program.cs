@@ -1,11 +1,22 @@
-﻿using System;
-using System.Text;
-using System.Diagnostics;
-
-namespace Task04_3
+﻿namespace Task04_3
 {
+    using System;
+    using System.Text;
+    using System.Diagnostics;
+
     internal class Program
     {
+        /// <summary>
+        /// Складываемый символ
+        /// </summary>
+        private static char term = '*';
+
+        /// <summary>
+        /// Число итераций операции сложения, необходим для более точного вычисления среднего времени
+        /// прибавления n числа символов к объекту
+        /// </summary>
+        private static int iterations_count = 3;
+
         /// <summary>
         /// Вычисляет среднее врямя операции прибавления n числа символов к объекту типа string
         /// </summary>
@@ -15,19 +26,19 @@ namespace Task04_3
         {
             var temp = string.Empty;
             Stopwatch sw = new Stopwatch();
-            for (int i = 0; i < 3; i++)//todo pn хардкод
-			{
+            for (int i = 0; i < iterations_count; i++)
+            {
                 sw.Start();
                 for (int j = 0; j < n; j++)
                 {
-                    temp += '*';//todo pn хардкод
-				}
+                    temp += term;
+                }
 
                 sw.Stop();
                 temp = string.Empty;
             }
 
-            return sw.ElapsedMilliseconds / 3;
+            return sw.ElapsedMilliseconds / iterations_count;
         }
 
         /// <summary>
@@ -39,19 +50,19 @@ namespace Task04_3
         {
             StringBuilder temp = new StringBuilder();
             Stopwatch sw = new Stopwatch();
-            for (int i = 0; i < 3; i++)//todo pn хардкод
-			{
+            for (int i = 0; i < iterations_count; i++)
+            {
                 sw.Start();
                 for (int j = 0; j < n; j++)
                 {
-                    temp.Append('*');//todo pn хардкод
-				}
+                    temp.Append(term);
+                }
 
                 sw.Stop();
                 temp.Clear();
             }
 
-            return sw.Elapsed.Milliseconds / 3;
+            return sw.Elapsed.Milliseconds / iterations_count;
         }
 
         private static void Main(string[] args)

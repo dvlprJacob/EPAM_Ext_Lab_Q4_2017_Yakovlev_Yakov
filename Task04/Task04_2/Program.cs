@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace Task04_2
+﻿namespace Task04_2
 {
+    using System;
+    using System.Linq;
+
     internal class Program
     {
         /// <summary>
