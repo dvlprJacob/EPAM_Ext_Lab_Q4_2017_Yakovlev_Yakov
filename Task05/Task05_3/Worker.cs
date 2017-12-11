@@ -99,6 +99,11 @@
                 throw new NullReferenceException();
             }
 
+            if (empl_date.CompareTo(user.Get_birth_date()) <= 0)
+            {
+                throw new ArgumentException();
+            }
+
             this.employment_date = empl_date;
         }
 
