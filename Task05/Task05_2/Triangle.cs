@@ -7,21 +7,18 @@
     /// </summary>
     internal class Triangle
     {
-        private double side_a;
+        private double sideA;
 
-        private double side_b;
+        private double sideB;
 
-        private double side_c;
+        private double sideC;
 
         /// <summary>
-        /// Инициализирует новый экземпляр равнобедренного треугольника сторонами, равными единице
+        /// Инициализирует пустой экземпляр равнобедренного треугольника
         /// </summary>
         public Triangle()
         {
-            this.A = 1;//todo pn хардкод
-			this.B = 1;//todo pn хардкод
-			this.C = 1;//todo pn хардкод
-		}
+        }
 
         /// <summary>
         /// Инициализирует новый экземпляр с заданными сторонами
@@ -65,14 +62,14 @@
         {
             get
             {
-                return this.side_a;
+                return this.sideA;
             }
 
             set
             {
                 if ((value > 0) && (value <= this.B + this.C))
                 {
-                    this.side_a = value;
+                    this.sideA = value;
                 }
             }
         }
@@ -84,14 +81,14 @@
         {
             get
             {
-                return this.side_b;
+                return this.sideB;
             }
 
             set
             {
                 if ((value > 0) && (value <= this.A + this.C))
                 {
-                    this.side_b = value;
+                    this.sideB = value;
                 }
             }
         }
@@ -103,14 +100,14 @@
         {
             get
             {
-                return this.side_c;
+                return this.sideC;
             }
 
             set
             {
                 if ((value > 0) && (value <= this.A + this.B))
                 {
-                    this.side_c = value;
+                    this.sideC = value;
                 }
             }
         }

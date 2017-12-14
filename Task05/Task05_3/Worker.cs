@@ -5,8 +5,8 @@
     /// <summary>
     /// Представляет сущность работник, представленный экземпляром User, должностью, зароботной платой и датой принятия на работу
     /// </summary>
-    internal class Worker//todo pn в задании же Employee
-	{
+    internal class Worker// В ТЗ не было задания создания класса Worker или Employee, я по своей инициативе реализовал данный класс для демонстрации использования класса User (что было  в ТЗ)  посредством агрегации
+    {
         public Worker()
         {
         }
@@ -31,35 +31,35 @@
                 throw new ArgumentException();
             }
 
-            this.person = new User(user);
-            this.position = position;
-            this.salary = salary;
-            this.employment_date = empl_date;
+            this.Person = new User(user);
+            this.Position = position;
+            this.Salary = salary;
+            this.Employment_date = empl_date;
         }
 
         /// <summary>
         /// Представляет экземпляр класса User
         /// </summary>
-        public User person { get; set; }
+        public User Person { get; set; }
 
         /// <summary>
         /// Должность
         /// </summary>
-        private string position { get; set; }
+        private string Position { get; set; }
 
         /// <summary>
         /// Зароботная плата
         /// </summary>
-        private int salary { get; set; }
+        private int Salary { get; set; }
 
         /// <summary>
         /// Дата принятия на работу
         /// </summary>
-        private DateTime employment_date { get; set; } //todo pn и где стаж работы?
+        private DateTime Employment_date { get; set; }
 
         public User Get_user()
         {
-            return this.person;
+            return this.Person;
         }
 
         public void Set_user(User user)
@@ -69,27 +69,25 @@
                 throw new NullReferenceException();
             }
 
-            this.person = user;
+            this.Person = user;
         }
 
         public int Get_salary()
         {
-            return this.salary;
+            return this.Salary;
         }
 
         public void Set_salary(int salary)
         {
-            if (salary <= 0)
+            if (salary > 0)
             {
-	            throw new ArgumentException(); //todo pn некорректное использование исключения
+                this.Salary = salary;
             }
-
-            this.salary = salary;
         }
 
         public DateTime Get_employment_date()
         {
-            return this.employment_date;
+            return this.Employment_date;
         }
 
         public void Set_employment_date(DateTime empl_date)
@@ -99,17 +97,17 @@
                 throw new NullReferenceException();
             }
 
-            if (empl_date.CompareTo(user.Get_birth_date()) <= 0)//todo pn user откуда взялся?
+            if (empl_date.CompareTo(this.Person.Get_birth_date()) <= 0)
             {
                 throw new ArgumentException();
             }
 
-            this.employment_date = empl_date;
+            this.Employment_date = empl_date;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}\nEmployment date : {1:D}\nPosition : {2}\nSalary : {3}", this.person, this.employment_date, this.position, this.salary);
+            return string.Format("{0}\nEmployment date : {1:D}\nPosition : {2}\nSalary : {3}", this.Person, this.Employment_date, this.Position, this.Salary);
         }
     }
 }

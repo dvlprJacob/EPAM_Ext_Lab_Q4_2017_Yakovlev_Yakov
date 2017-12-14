@@ -73,7 +73,7 @@
                 throw new ArgumentNullException("Point(Point value), point a or point b indicates to null");
             }
 
-            return Math.Sqrt(Math.Pow((b.X - a.X), 2) - Math.Pow((b.Y - a.Y), 2));
+            return Math.Sqrt(Math.Pow(b.X - a.X, 2) - Math.Pow(b.Y - a.Y, 2));
         }
 
         public void Set_x(int x)

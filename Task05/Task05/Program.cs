@@ -7,11 +7,11 @@
         private static void Main(string[] args)
         {
             int n;
-            const string exit = "0";
+            const string Exit = "0";
             try
             {
                 string command = string.Empty;
-                while (command != exit)
+                while (command != Exit)
                 {
                     Console.Write("---------------------------------------------------------------------"
                         + "\nInput number of circles for generate random rounds, 0 for exit\nN = ");
@@ -19,7 +19,7 @@
                     command = Console.ReadLine();
                     switch (command)
                     {
-                        case exit:
+                        case Exit:
 
                             Console.WriteLine("Press any key for exit");
                             Console.ReadKey();
@@ -61,13 +61,11 @@
                                                 {
                                                     if (round.Crosses(a))
                                                     {
-                                                        Console.WriteLine("{0,-13} intersect round with center on "
-                                                            + "{1} and radius equals to {2}", string.Empty, round.Centre, round.Radius);
+                                                        Console.WriteLine("{0,-13} intersect round with center on {1} and radius equals to {2}", string.Empty, round.Centre, round.Radius);
                                                     }
                                                     else
                                                     {
-                                                        Console.WriteLine("{0,-13} does not intersect round with center on {1} and radius equals to {2}", string.Empty,
-                                                            round.Centre, round.Radius);
+                                                        Console.WriteLine("{0,-13} does not intersect round with center on {1} and radius equals to {2}", string.Empty, round.Centre, round.Radius);
                                                     }
                                                 }
 

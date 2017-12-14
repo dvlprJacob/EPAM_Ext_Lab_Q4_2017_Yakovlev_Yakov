@@ -7,13 +7,13 @@
     /// </summary>
     internal class User
     {
-        private string f_name;
+        private string fName;
 
-        private string s_name;
+        private string sName;
 
         private string patronymic;
 
-        private DateTime b_date;
+        private DateTime bDate;
 
         public User()
         {
@@ -22,21 +22,21 @@
         /// <summary>
         /// Инициализирует новый экземпляр с заданным именем, фамилией, отчеством и датой рождения
         /// </summary>
-        /// <param name="f_name"> Имя</param>
-        /// <param name="s_name"> Фамилия</param>
+        /// <param name="fName"> Имя</param>
+        /// <param name="sName"> Фамилия</param>
         /// <param name="patronymic"> Отчество</param>
-        /// <param name="b_date"> Дата рождения</param>
-        public User(string f_name, string s_name, string patronymic, DateTime b_date)
+        /// <param name="bDate"> Дата рождения</param>
+        public User(string fName, string sName, string patronymic, DateTime bDate)
         {
-            if (string.IsNullOrEmpty(f_name) || string.IsNullOrEmpty(s_name) || string.IsNullOrEmpty(patronymic) || object.ReferenceEquals(b_date, null))
+            if (string.IsNullOrEmpty(fName) || string.IsNullOrEmpty(sName) || string.IsNullOrEmpty(patronymic) || object.ReferenceEquals(bDate, null))
             {
                 throw new ArgumentNullException();
             }
 
-            this.First_name = f_name;
-            this.Second_name = s_name;
+            this.First_name = fName;
+            this.Second_name = sName;
             this.Patronymic = patronymic;
-            this.b_date = b_date;
+            this.bDate = bDate;
         }
 
         public User(User user)
@@ -49,7 +49,7 @@
             this.First_name = user.First_name;
             this.Second_name = user.Second_name;
             this.Patronymic = user.Patronymic;
-            this.b_date = user.b_date;
+            this.bDate = user.bDate;
         }
 
         /// <summary>
@@ -59,14 +59,14 @@
         {
             get
             {
-                return this.f_name;
+                return this.fName;
             }
 
             set
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    this.f_name = value;
+                    this.fName = value;
                 }
             }
         }
@@ -78,14 +78,14 @@
         {
             get
             {
-                return this.s_name;
+                return this.sName;
             }
 
             set
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    this.s_name = value;
+                    this.sName = value;
                 }
             }
         }
@@ -117,18 +117,19 @@
             get
             {
                 DateTime date_now = DateTime.Now;
-                if (date_now.Year.CompareTo(this.b_date.Year) == 0)
+                if (date_now.Year.CompareTo(this.bDate.Year) == 0)
                 {
                     return 0;
                 }
 
-                int year = date_now.Year - this.b_date.Year;
-                if (date_now.Month < this.b_date.Month
-                    || (date_now.Month == this.b_date.Month
-                    && date_now.Day < this.b_date.Day))
+                int year = date_now.Year - this.bDate.Year;
+                if (date_now.Month < this.bDate.Month
+                    || (date_now.Month == this.bDate.Month
+                    && date_now.Day < this.bDate.Day))
                 {
                     year++;
                 }
+
                 return year;
             }
         }
@@ -137,18 +138,18 @@
         {
             if (bdate.CompareTo(DateTime.Now) == -1)
             {
-                this.b_date = bdate;
+                this.bDate = bdate;
             }
         }
 
         public DateTime Get_birth_date()
         {
-            return this.b_date;
+            return this.bDate;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}\nBirth date : {3:D}\nAge :    {4}", this.First_name, this.Second_name, this.Patronymic, this.b_date.Date, this.Age);
+            return string.Format("{0} {1} {2}\nBirth date : {3:D}\nAge :    {4}", this.First_name, this.Second_name, this.Patronymic, this.bDate.Date, this.Age);
         }
     }
 }

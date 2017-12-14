@@ -13,8 +13,7 @@
                 string command = string.Empty;
                 while (command != Exit)
                 {
-                    Console.Write("---------------------------------------------------------------------"
-                        + "\nInput number for generate random triangles, 0 for Exit\nN = ");
+                    Console.Write("---------------------------------------------------------------------\nInput number for generate random triangles, 0 for Exit\nN = ");
 
                     command = Console.ReadLine();
                     switch (command)
@@ -42,8 +41,7 @@
                                     int b = rand.Next(1, 100);
                                     int c = rand.Next(1, 100);
                                     triangles[i] = new Triangle(a, b, c);
-                                    Console.WriteLine("{0}, area equals to {1:0.##}, "
-                                        + "perimeter equals to {2:0.##}", triangles[i], triangles[i].Area, triangles[i].Perimeter);
+                                    Console.WriteLine("{0}, area equals to {1:0.##}, perimeter equals to {2:0.##}", triangles[i], triangles[i].Area, triangles[i].Perimeter);
                                 }
 
                                 break;
