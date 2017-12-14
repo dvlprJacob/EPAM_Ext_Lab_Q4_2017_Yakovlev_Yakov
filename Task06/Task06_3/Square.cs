@@ -10,20 +10,26 @@
         public Square()
             : base(1, 1)
         {
-            this.Name = "Square";
         }
 
         public Square(int side)
             : base(side, side)
         {
-            this.Name = "Square";
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Square";
+            }
         }
 
         public int Side
         {
             get
             {
-                return this.width;
+                return this.Width;
             }
 
             set
@@ -33,14 +39,13 @@
                     throw new ArgumentException();
                 }
 
-                this.width = value;
+                this.Width = value;
             }
         }
 
         public override string ToString()
         {
-            return string.Format("{0} :\nwigth {1}\nheigth {2}\nperimeter {3}\narea {4}",
-                this.Name, this.Width, this.Heigth, this.Perimeter, this.Area);
+            return string.Format("{0} :\nwigth {1}\nheigth {2}\nperimeter {3}\narea {4}", this.Name, this.Side, this.Side, this.Perimeter, this.Area);
         }
     }
 }

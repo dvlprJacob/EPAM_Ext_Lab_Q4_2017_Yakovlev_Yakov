@@ -135,8 +135,7 @@
 
         public override string ToString()
         {
-            return string.Format("Round :\nCenter : {0}\nRadius  : {1}\nCircumference : {2:0.##}\nArea : {3:0.##}",
-                this.Centre, this.Radius, this.Circumference, this.Area);
+            return string.Format("Round :\nCenter : {0}\nRadius  : {1}\nCircumference : {2:0.##}\nArea : {3:0.##}", this.Centre, this.Radius, this.Circumference, this.Area);
         }
     }
 }

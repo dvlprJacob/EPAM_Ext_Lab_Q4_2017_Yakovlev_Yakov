@@ -13,10 +13,8 @@
 
         public Circle()
         {
-            this.Name = "Circle";//todo pn хардкод
-			this.centre = new Point();
-            this.radius = 1;//todo pn хардкод
-		}
+            this.centre = new Point();
+        }
 
         public Circle(Point centre, double radius)
         {
@@ -25,10 +23,9 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Circle";//todo pn хардкод дублирование кода итд ниже
-			this.Centre = new Point(centre);
-            this.Radius = radius;//todo pn хардкод
-		}
+            this.centre = new Point(centre);
+            this.radius = radius;
+        }
 
         public Circle(double radius)
         {
@@ -37,9 +34,8 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Circle";
             this.centre = new Point();
-            this.Radius = radius;
+            this.radius = radius;
         }
 
         public Circle(Round sample)
@@ -49,9 +45,16 @@
                 throw new NullReferenceException();
             }
 
-            this.Name = "Circle";
-            this.Centre = sample.Centre;
-            this.Radius = sample.Radius;
+            this.centre = sample.centre;
+            this.radius = sample.radius;
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Circle";
+            }
         }
 
         /// <summary>
@@ -73,7 +76,7 @@
 
                 if (value is Point)
                 {
-                    this.centre = new Point(value);//todo pn дичь какая-то. чтобы создать экземпляр класса point нужно передать на вход класс point
+                    this.centre = value;
                 }
             }
         }
@@ -116,6 +119,8 @@
             }
         }
 
+        public virtual double Area { get; }
+
         /// <summary>
         /// Проверяет, входит ли точка в окружность
         /// </summary>
@@ -128,15 +133,12 @@
                 throw new NullReferenceException();
             }
 
-            return (Point.Distance(this.Centre, a) <= this.Radius) ? true : false;
+            return (Point.Distance(this.centre, a) <= this.radius) ? true : false;
         }
-
-        public virtual double Area { get; }
 
         public override string ToString()
         {
-            return string.Format("{0} :\nCenter : {1}\nRadius  : {2}\nCircumference : {3:0.##}",
-                this.Name, this.Centre, this.Radius, this.Circumference);
+            return string.Format("{0} :\nCenter : {1}\nRadius  : {2}\nCircumference : {3:0.##}", this.Name, this.centre, this.radius, this.Circumference);
         }
     }
 }

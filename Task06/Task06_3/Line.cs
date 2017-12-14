@@ -7,12 +7,11 @@
     /// </summary>
     internal class Line : Figure
     {
-        public Point start;
-        public Point end;
+        private Point start;
+        private Point end;
 
         public Line()
         {
-            this.Name = "Line";
             this.start = new Point();
             this.end = new Point(1, 1);
         }
@@ -24,7 +23,6 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Line";
             this.start = start;
             this.end = end;
         }
@@ -36,9 +34,16 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Line";
             this.start = new Point(x1, y1);
             this.end = new Point(x2, y2);
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Line";
+            }
         }
 
         public Point Start_point
@@ -90,7 +95,7 @@
 
         public override string ToString()
         {
-            return string.Format("{0} with the origin at {1} and end at {2}, length = {3}", this.Name, this.Start_point, this.End_point, this.Length);
+            return string.Format("{0} with the origin at {1} and end at {2}, length = {3}", this.Name, this.start, this.end, this.Length);
         }
     }
 }

@@ -7,12 +7,11 @@
     /// </summary>
     internal class Rectangle : Figure
     {
-        protected int width;
-        protected int heigth;
+        private int width;
+        private int heigth;
 
         public Rectangle()
         {
-            this.Name = "Rectangle";
             this.width = 2;
             this.heigth = 1;
         }
@@ -24,9 +23,16 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Rectangle";
             this.width = width;
             this.heigth = heigth;
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Rectangle";
+            }
         }
 
         /// <summary>
@@ -38,6 +44,7 @@
             {
                 return this.width;
             }
+
             set
             {
                 if (value <= 0)
@@ -77,7 +84,7 @@
         {
             get
             {
-                return width * heigth;
+                return this.width * this.heigth;
             }
         }
 
@@ -88,14 +95,13 @@
         {
             get
             {
-                return (2 * width) + (2 * heigth);
+                return (2 * this.width) + (2 * this.heigth);
             }
         }
 
         public override string ToString()
         {
-            return string.Format("{0} :\nwigth {1}\nheigth {2}\nperimeter {3}\narea {4}",
-                this.Name, this.Width, this.Heigth, this.Perimeter, this.Area);
+            return string.Format("{0} :\nwigth {1}\nheigth {2}\nperimeter {3}\narea {4}", this.Name, this.width, this.heigth, this.Perimeter, this.Area);
         }
     }
 }

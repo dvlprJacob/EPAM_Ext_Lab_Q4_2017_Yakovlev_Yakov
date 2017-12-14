@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task06_3
+﻿namespace Task06_3
 {
+    using System;
+
     internal class Program
     {
         private static string[] figures = new string[] { "Point", "Line", "Circle", "Round", "Ring", "Rectangle", "Square" };

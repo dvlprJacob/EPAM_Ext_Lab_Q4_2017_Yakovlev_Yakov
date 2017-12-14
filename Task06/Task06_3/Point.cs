@@ -13,14 +13,10 @@
 
         public Point()
         {
-            this.Name = "Point";
-            this.x = 0;
-            this.y = 0;
         }
 
         public Point(int x = 0, int y = 0)
         {
-            this.Name = "Point";
             this.x = x;
             this.y = y;
         }
@@ -32,9 +28,16 @@
                 throw new ArgumentNullException("Point(Point value), point value indicates to null");
             }
 
-            this.Name = "Point";
-            this.X = value.x;
-            this.Y = value.y;
+            this.x = value.x;
+            this.y = value.y;
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Point";
+            }
         }
 
         private int X
@@ -76,32 +79,32 @@
                 throw new ArgumentNullException("Point(Point value), point a or point b indicates to null");
             }
 
-            return Math.Sqrt(Math.Pow((b.X - a.X), 2) - Math.Pow((b.Y - a.Y), 2));
+            return Math.Sqrt(Math.Pow(b.X - a.X, 2) - Math.Pow(b.Y - a.Y, 2));
         }
 
         public void Set_x(int x)
         {
-            this.X = x;
+            this.x = x;
         }
 
         public int Get_x()
         {
-            return this.X;
+            return this.x;
         }
 
         public void Set_y(int y)
         {
-            this.Y = y;
+            this.y = y;
         }
 
         public int Get_y()
         {
-            return this.Y;
+            return this.y;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} ({1};{2})", this.Name, this.X, this.Y);
+            return string.Format("{0} ({1};{2})", this.Name, this.x, this.y);
         }
     }
 }

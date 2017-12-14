@@ -10,25 +10,29 @@
         public Round()
             : base()
         {
-            this.Name = "Round";
         }
 
         public Round(Point centre, double radius)
             : base(centre, radius)
         {
-            this.Name = "Round";
         }
 
         public Round(double radius)
             : base(radius)
         {
-            this.Name = "Round";
         }
 
         public Round(Round sample)
             : base(sample)
         {
-            this.Name = "Round";
+        }
+
+        public new string Name
+        {
+            get
+            {
+                return "Round";
+            }
         }
 
         /// <summary>
@@ -45,8 +49,7 @@
 
         public override string ToString()
         {
-            return string.Format("{0} :\nCenter : {1}\nRadius  : {2}\nCircumference : {3:0.##}\nArea : {4:0.##}",
-                this.Name, this.Centre, this.Radius, this.Circumference, this.Area);
+            return string.Format("{0} :\nCenter : {1}\nRadius  : {2}\nCircumference : {3:0.##}\nArea : {4:0.##}", this.Name, this.Centre, this.Radius, this.Circumference, this.Area);
         }
     }
 }

@@ -3,11 +3,11 @@
     /// <summary>
     /// Абстрактный класс Фигура
     /// </summary>
-    internal abstract class Figure
+    public abstract class Figure
     {
         /// <summary>
         /// Имя фигуры
         /// </summary>
-        protected string Name { set; get; }
+        protected string Name { get; set; }
     }
 }

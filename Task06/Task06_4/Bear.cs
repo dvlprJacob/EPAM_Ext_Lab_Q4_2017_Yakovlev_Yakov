@@ -4,8 +4,16 @@
 
     internal class Bear : Monster
     {
-        public int Health { get { return health; } set { health = value; } }
-        public override int X { get; set; }
+        public int Health
+        {
+            get;
+        }
+
+        public override int X
+        {
+            get;
+            set;
+        }
 
         public override int Y { get; set; }
 

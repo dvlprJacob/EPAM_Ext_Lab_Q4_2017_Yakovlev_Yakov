@@ -113,8 +113,7 @@
 
         public override string ToString()
         {
-            return string.Format("{0}\nPosition : {1}\nEmploument date : {2:D}\nExperience : {3}", base.ToString(),
-                this.position, this.employment_date, this.Experience);
+            return string.Format("{0}\nPosition : {1}\nEmploument date : {2:D}\nExperience : {3}", base.ToString(), this.position, this.employment_date, this.Experience);
         }
     }
 }

@@ -7,25 +7,23 @@
     /// </summary>
     internal class Ring : Round
     {
-        private double inner_radius;
+        private double innerRadius;
 
         public Ring()
             : base()
         {
-            this.Inner_radius = 0.9;//todo pn хардкод
+            this.Inner_radius = 1;
         }
 
         public Ring(Round round, double inner_rad)
             : base(round)
         {
-			/// Не уверен, но здесь и в остальных конструкторах скорее всего вызов конструктора базового класса нецелеесобразен,
-			/// так как есть условие, что внутренний радиус должен быть меньше или равен внешнему. //todo pn но в базовом классе инициализируются ещё и другие поля, а без вызова придется дублировать код инициализации
-			if (inner_rad > round.Radius)
+            if (inner_rad > round.Radius)
             {
                 throw new ArgumentException();
             }
 
-            this.inner_radius = inner_rad;
+            this.innerRadius = inner_rad;
         }
 
         public Ring(double outer_rad, double inner_rad, int x, int y)
@@ -36,7 +34,7 @@
                 throw new ArgumentException();
             }
 
-            this.inner_radius = inner_rad;
+            this.innerRadius = inner_rad;
         }
 
         public Ring(double outer_rad, double inner_rad, Point center)
@@ -47,22 +45,21 @@
                 throw new ArgumentException();
             }
 
-            this.inner_radius = inner_rad;
+            this.innerRadius = inner_rad;
         }
 
         public double Inner_radius
-
         {
             get
             {
-                return inner_radius;
+                return this.innerRadius;
             }
 
             set
             {
                 if (value <= this.Radius)
                 {
-                    this.inner_radius = value;
+                    this.innerRadius = value;
                 }
             }
         }
@@ -76,7 +73,7 @@
 
             set
             {
-                if (value >= inner_radius)
+                if (value >= this.innerRadius)
                 {
                     this.Radius = value;
                 }
@@ -88,7 +85,7 @@
             get
             {
                 var outer_length = 2 * (Math.PI * this.Radius);
-                var inner_length = 2 * (Math.PI * this.inner_radius);
+                var inner_length = 2 * (Math.PI * this.innerRadius);
                 return outer_length + inner_length;
             }
         }
@@ -98,7 +95,7 @@
             get
             {
                 var pow_outer = Math.Pow(this.Radius, 2);
-                var pow_inner = Math.Pow(this.inner_radius, 2);
+                var pow_inner = Math.Pow(this.innerRadius, 2);
                 var pi = Math.PI;
                 return (pi * pow_outer) - (pi * pow_inner);
             }
@@ -106,8 +103,7 @@
 
         public override string ToString()
         {
-            return string.Format("Ring :with center on {0} with outer radius {1:0.##} and inner radius {2:0.##}, сircumference equals to {3:0.##}, area equals to {4:0.##}",
-                this.Centre, this.Radius, this.Inner_radius, this.Circumference, this.Area);
+            return string.Format("Ring :with center on {0} with outer radius {1:0.##} and inner radius {2:0.##}, сircumference equals to {3:0.##}, area equals to {4:0.##}", this.Centre, this.Radius, this.innerRadius, this.Circumference, this.Area);
         }
     }
 }

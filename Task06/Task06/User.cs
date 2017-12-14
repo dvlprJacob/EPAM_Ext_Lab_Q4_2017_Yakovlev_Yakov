@@ -7,13 +7,13 @@
     /// </summary>
     internal class User
     {
-        protected string f_name;
+        private string f_name;
 
-        protected string s_name;
+        private string s_name;
 
-        protected string patronymic;
+        private string patronymic;
 
-        protected DateTime b_date;
+        private DateTime b_date;
 
         public User()
         {
@@ -129,15 +129,8 @@
                 {
                     year++;
                 }
-                return year;
-            }
-        }
 
-        protected void Set_birth_date(DateTime bdate)
-        {
-            if (bdate.CompareTo(DateTime.Now) == -1)
-            {
-                this.b_date = bdate;
+                return year;
             }
         }
 
@@ -149,6 +142,14 @@
         public override string ToString()
         {
             return string.Format("{0} {1} {2}\nBirth date : {3:D}\nAge : {4}", this.First_name, this.Second_name, this.Patronymic, this.b_date.Date, this.Age);
+        }
+
+        protected void Set_birth_date(DateTime bdate)
+        {
+            if (bdate.CompareTo(DateTime.Now) == -1)
+            {
+                this.b_date = bdate;
+            }
         }
     }
 }
