@@ -5,8 +5,8 @@
     /// <summary>
     /// Представляет сущность работник, представленный экземпляром User, должностью, зароботной платой и датой принятия на работу
     /// </summary>
-    internal class Worker
-    {
+    internal class Worker//todo pn в задании же Employee
+	{
         public Worker()
         {
         }
@@ -55,7 +55,7 @@
         /// <summary>
         /// Дата принятия на работу
         /// </summary>
-        private DateTime employment_date { get; set; }
+        private DateTime employment_date { get; set; } //todo pn и где стаж работы?
 
         public User Get_user()
         {
@@ -81,7 +81,7 @@
         {
             if (salary <= 0)
             {
-                throw new ArgumentException();
+	            throw new ArgumentException(); //todo pn некорректное использование исключения
             }
 
             this.salary = salary;
@@ -99,7 +99,7 @@
                 throw new NullReferenceException();
             }
 
-            if (empl_date.CompareTo(user.Get_birth_date()) <= 0)
+            if (empl_date.CompareTo(user.Get_birth_date()) <= 0)//todo pn user откуда взялся?
             {
                 throw new ArgumentException();
             }

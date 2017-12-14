@@ -18,10 +18,10 @@
         /// </summary>
         public Triangle()
         {
-            this.A = 1;
-            this.B = 1;
-            this.C = 1;
-        }
+            this.A = 1;//todo pn хардкод
+			this.B = 1;//todo pn хардкод
+			this.C = 1;//todo pn хардкод
+		}
 
         /// <summary>
         /// Инициализирует новый экземпляр с заданными сторонами

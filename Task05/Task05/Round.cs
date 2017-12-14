@@ -14,7 +14,7 @@
         public Round()
         {
             this.centre = new Point();
-            this.radius = 1;
+            this.radius = 1;//todo pn хардкод
         }
 
         public Round(Point centre, int radius)
@@ -62,7 +62,7 @@
 
             set
             {
-                if (object.ReferenceEquals(value, null))
+                if (object.ReferenceEquals(value, null))//todo pn не понял зачем? 1. value == null, 2. это исключение и так возникнет здесь.
                 {
                     throw new NullReferenceException();
                 }
