@@ -13,10 +13,10 @@
 
         public Circle()
         {
-            this.Name = "Circle";
-            this.centre = new Point();
-            this.radius = 1;
-        }
+            this.Name = "Circle";//todo pn хардкод
+			this.centre = new Point();
+            this.radius = 1;//todo pn хардкод
+		}
 
         public Circle(Point centre, double radius)
         {
@@ -25,10 +25,10 @@
                 throw new ArgumentException();
             }
 
-            this.Name = "Circle";
-            this.Centre = new Point(centre);
-            this.Radius = radius;
-        }
+            this.Name = "Circle";//todo pn хардкод дублирование кода итд ниже
+			this.Centre = new Point(centre);
+            this.Radius = radius;//todo pn хардкод
+		}
 
         public Circle(double radius)
         {
@@ -73,7 +73,7 @@
 
                 if (value is Point)
                 {
-                    this.centre = new Point(value);
+                    this.centre = new Point(value);//todo pn дичь какая-то. чтобы создать экземпляр класса point нужно передать на вход класс point
                 }
             }
         }
