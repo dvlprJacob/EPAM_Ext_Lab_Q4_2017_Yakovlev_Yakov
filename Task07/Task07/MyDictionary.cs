@@ -22,7 +22,7 @@
                 switch (i % 2 == 0)
                 {
                     case true:
-                        this.serialNumbers.Add(1);
+                        this.serialNumbers.Add(1);//todo pn немного не понял, а для чего тебе хранить порядковые номера, если ты в цикле вполне можешь оперировать индексами элементов в массиве
                         break;
 
                     case false:

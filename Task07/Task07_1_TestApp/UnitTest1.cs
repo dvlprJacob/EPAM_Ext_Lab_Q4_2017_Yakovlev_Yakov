@@ -4,15 +4,15 @@
     using Task07_1;
 
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1//todo pn классы лучше говорящими названиями именовать MyCircleTest, например.
     {
         [TestMethod]
         public void IsNotNull()
         {
-            MyCircle circle = new MyCircle(999);
+            MyCircle circle = new MyCircle(-1);//todo pn ничего не упало и тест завершился корректно. Значит, тест некорректный
 
-            Assert.IsNotNull(circle);
-        }
+            Assert.IsNotNull(circle);//todo pn у тебя это условие всегда верно. Потому что не заполнение поля circle в MyCircle не означает, что не создастся экземпляр
+		}
 
         [TestMethod]
         public void RemoveEverySecondResult1()

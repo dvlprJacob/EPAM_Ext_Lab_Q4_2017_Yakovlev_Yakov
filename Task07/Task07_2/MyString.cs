@@ -31,7 +31,7 @@
             string[] temp;
             if (object.ReferenceEquals(separator, null))
             {
-                this.Separators = new char[] { '.', ' ' };
+                this.Separators = new char[] { '.', ' ' };//todo pn хардкод. 
                 temp = initText.Split(new char[] { '.', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             }
             else
