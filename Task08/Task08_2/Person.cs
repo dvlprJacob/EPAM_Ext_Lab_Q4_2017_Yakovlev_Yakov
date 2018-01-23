@@ -39,27 +39,28 @@
         {
             try
             {
-                if (person.CameIn.Hour < 12)
+                if (person.CameIn.Hour < 12)//todo pn хардкод
                 {
-                    this.GreetString = string.Format("Good morning, {0}, said {1}", person.Name, this.Name);
-                    return;
+                    this.GreetString = string.Format("Good morning, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
+					return;
                 }
 
-                if (person.CameIn.Hour <= 17)
-                {
-                    this.GreetString = string.Format("Good day, {0}, said {1}", person.Name, this.Name);
-                    return;
+                if (person.CameIn.Hour <= 17)//todo pn хардкод
+				{
+                    this.GreetString = string.Format("Good day, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
+					return;
                 }
                 else
                 {
-                    this.GreetString = string.Format("Good evening, {0}, said {1}", person.Name, this.Name);
-                    return;
+                    this.GreetString = string.Format("Good evening, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
+					return;
                 }
             }
             catch (Exception ex)
             {
-                this.GreetString += string.Format("{0} on Person.Greet", ex.Message);
-                return;
+                this.GreetString += string.Format("{0} on Person.Greet", ex.Message);//todo pn хардкод +- 
+				//(вообще, по-правильному генерировать собственное исключение и заполнять в нём строку сообщение, а ему передавать только параметры для этой строки, НО не всю строку целиком)
+				return;
             }
         }
 
@@ -72,12 +73,12 @@
         {
             try
             {
-                this.BidFarewellString = string.Format("Goodbye,{0}, said {1}", person.Name, this.Name);
-            }
+                this.BidFarewellString = string.Format("Goodbye,{0}, said {1}", person.Name, this.Name);//todo pn хардкод
+			}
             catch (Exception ex)
             {
-                this.BidFarewellString = string.Format("{0} on Person.BidFarewell", ex.Message);
-            }
+                this.BidFarewellString = string.Format("{0} on Person.BidFarewell", ex.Message);//todo pn хардкод +-
+			}
         }
 
         /// <summary>
@@ -88,9 +89,9 @@
         {
             try
             {
-                this.Event = string.Format("[ {0} came at {1}]", this.Name, cameTime.Hour);
+                this.Event = string.Format("[ {0} came at {1}]", this.Name, cameTime.Hour);//todo pn хардкод
 
-                if (GreetEvent != null)
+				if (GreetEvent != null)
                 {
                     PersonEventArgs personEvent = new PersonEventArgs(this.Name, cameTime);
                     GreetEvent(this, personEvent);
@@ -101,8 +102,8 @@
             }
             catch (Exception ex)
             {
-                this.Event += string.Format("{0} on Person.Came", ex.Message);
-                return;
+                this.Event += string.Format("{0} on Person.Came", ex.Message);//todo pn хардкод +-
+				return;
             }
         }
 
@@ -115,9 +116,9 @@
             {
                 if (BidFarewellEvent != null)
                 {
-                    this.Event = string.Format("[ {0} gone home ]", this.Name);
-                    // Очищаем строки приветствия и прощания
-                    this.GreetString = string.Empty;
+                    this.Event = string.Format("[ {0} gone home ]", this.Name);//todo pn хардкод
+																			   // Очищаем строки приветствия и прощания
+					this.GreetString = string.Empty;
                     this.BidFarewellString = string.Empty;
 
                     PersonEventArgs personEvent = new PersonEventArgs(this.Name, DateTime.Now);
@@ -130,8 +131,8 @@
             }
             catch (Exception ex)
             {
-                this.Event += string.Format("{0} on Person.Leave", ex.Message);
-                return;
+                this.Event += string.Format("{0} on Person.Leave", ex.Message);//todo pn хардкод
+				return;
             }
         }
     }
