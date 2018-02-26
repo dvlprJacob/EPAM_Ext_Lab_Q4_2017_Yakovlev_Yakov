@@ -1,6 +1,7 @@
 ﻿namespace Task08_2
 {
     using System;
+    using NLog;
 
     public class Person : IEmployee
     {
@@ -8,6 +9,8 @@
         {
             this.Name = name;
         }
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public static event EventHandler<PersonEventArgs> GreetEvent;
 
@@ -39,28 +42,31 @@
         {
             try
             {
-                if (person.CameIn.Hour < 12)//todo pn хардкод
+                if (person.CameIn.Hour < Convert.ToInt32(Resources.MorningTimeMax))
                 {
-                    this.GreetString = string.Format("Good morning, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
-					return;
+                    int b = 1 - 1;
+                    int a = 10 / b;
+                    this.GreetString = $"{Resources.GreetingMorning}, {person.Name}, {Resources.SaidVerb} {this.Name}";
+                    return;
                 }
 
-                if (person.CameIn.Hour <= 17)//todo pn хардкод
-				{
-                    this.GreetString = string.Format("Good day, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
-					return;
+                if (person.CameIn.Hour <= Convert.ToInt32(Resources.DayTimeMax))
+                {
+                    this.GreetString = $"{Resources.GreetingDay}, {person.Name}, {Resources.SaidVerb} {this.Name}";
+                    return;
                 }
                 else
                 {
-                    this.GreetString = string.Format("Good evening, {0}, said {1}", person.Name, this.Name);//todo pn хардкод
-					return;
+                    int b = 1 - 1;
+                    int a = 10 / b;
+                    this.GreetString = $"{Resources.GreetingEvening}, {person.Name}, {Resources.SaidVerb} {this.Name}";
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                this.GreetString += string.Format("{0} on Person.Greet", ex.Message);//todo pn хардкод +- 
-				//(вообще, по-правильному генерировать собственное исключение и заполнять в нём строку сообщение, а ему передавать только параметры для этой строки, НО не всю строку целиком)
-				return;
+                logger.Debug(ex.ToString());
+                return;
             }
         }
 
@@ -73,12 +79,12 @@
         {
             try
             {
-                this.BidFarewellString = string.Format("Goodbye,{0}, said {1}", person.Name, this.Name);//todo pn хардкод
-			}
+                this.BidFarewellString = $"{Resources.BidFarewell} {person.Name}, {Resources.SaidVerb} {this.Name}";
+            }
             catch (Exception ex)
             {
-                this.BidFarewellString = string.Format("{0} on Person.BidFarewell", ex.Message);//todo pn хардкод +-
-			}
+                logger.Debug(ex.ToString());
+            }
         }
 
         /// <summary>
@@ -89,9 +95,9 @@
         {
             try
             {
-                this.Event = string.Format("[ {0} came at {1}]", this.Name, cameTime.Hour);//todo pn хардкод
+                this.Event = string.Format($"{this.Name} {Resources.CameEvent} {cameTime.Hour}");//todo pn хардкод
 
-				if (GreetEvent != null)
+                if (GreetEvent != null)
                 {
                     PersonEventArgs personEvent = new PersonEventArgs(this.Name, cameTime);
                     GreetEvent(this, personEvent);
@@ -102,8 +108,8 @@
             }
             catch (Exception ex)
             {
-                this.Event += string.Format("{0} on Person.Came", ex.Message);//todo pn хардкод +-
-				return;
+                logger.Debug(ex.ToString());
+                return;
             }
         }
 
@@ -116,9 +122,10 @@
             {
                 if (BidFarewellEvent != null)
                 {
-                    this.Event = string.Format("[ {0} gone home ]", this.Name);//todo pn хардкод
-																			   // Очищаем строки приветствия и прощания
-					this.GreetString = string.Empty;
+                    this.Event = string.Format($"{this.Name} {Resources.GoneHomeEvent}");
+
+                    // Очищаем строки приветствия и прощания
+                    this.GreetString = string.Empty;
                     this.BidFarewellString = string.Empty;
 
                     PersonEventArgs personEvent = new PersonEventArgs(this.Name, DateTime.Now);
@@ -131,8 +138,8 @@
             }
             catch (Exception ex)
             {
-                this.Event += string.Format("{0} on Person.Leave", ex.Message);//todo pn хардкод
-				return;
+                logger.Debug(ex.ToString());
+                return;
             }
         }
     }

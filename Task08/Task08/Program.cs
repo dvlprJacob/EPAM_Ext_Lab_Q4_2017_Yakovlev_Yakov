@@ -1,8 +1,8 @@
 ﻿namespace Task08
 {
-    internal class Program 
+    internal class Program
     {
-        public static void Main(string[] args)
+        private static void Main(string[] args)
         {
         }
     }
