@@ -25,7 +25,7 @@
                 this.connectionString = connectionStringSection.ConnectionString;
                 this.providerFactory = DbProviderFactories.GetFactory(connectionStringSection.ProviderName);
             }
-            catch (IOException exc)
+            catch (IOException exc)//todo pn и зачем ты его заглушил?
             {
                 // ...
             }
@@ -60,7 +60,7 @@
                         while (reader.Read())
                         {
                             Orders order = new Orders();
-                            order.OrderID = (int)reader["OrderID"];
+                            order.OrderID = (int)reader["OrderID"];//todo pn было бы здорово вынести поля в константы (поменяются в базе - поменяешь в одном месте)
                             order.CustomerID = reader["CustomerID"] as string;
                             order.EmployeeID = reader["EmployeeID"] as int?;
                             order.OrderDate = reader["OrderDate"] as DateTime?;
@@ -159,7 +159,7 @@
                         orderInfo.Deatails.Discount = Convert.ToDouble(reader["Discount"]);
                     }
 
-                    command.Parameters.RemoveAt(0);
+                    command.Parameters.RemoveAt(0); //todo pn лучше создай новую команду 
                     command.CommandText = "SELECT * FROM [dbo].[Products] WHERE ProductID = @prodId";
                     command.Parameters.AddWithValue("@prodId", orderInfo.Deatails.ProductID);
 

@@ -218,8 +218,8 @@
         }
 
         [TestMethod]
-        public void SetOrderDateTest()
-        {
+        public void SetOrderDateTest() //todo pn тест упал (см в личку в скайп)
+		{
             using (DbConnection connection = this.providerFactory.CreateConnection())
             {
                 var date = new DateTime();
@@ -248,8 +248,8 @@
         }
 
         [TestMethod]
-        public void SetShippedDateTest()
-        {
+        public void SetShippedDateTest() //todo pn тест упал (см в личку в скайп)
+		{
             using (DbConnection connection = this.providerFactory.CreateConnection())
             {
                 var date = new DateTime();
