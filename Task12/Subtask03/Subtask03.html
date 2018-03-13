@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf - 8">
+        <link rel="stylesheet" type="text/css" href="stylesheets.css">
+        <title>Subtask03</title>
+    </head>
+    <body>
+        <div class="page">
+            <div id = "pageHeader">
+                <h1><span>Макет задания по "Основы HTML"</span></h1>
+            </div>
+
+            <div class = "pageBody">
+                <div id = "main">
+                    <h2>Меню</h2>
+                    <ul>
+                        <li>
+                            <a href=""><span>Главная</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span>Продукты</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span>Кафе</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span>Рестораны</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span>Вопросы</span></a>
+                        </li>
+                        <li>
+                            <a href=""><span>Акции</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id = "content">
+                    <h2>Основной контент</h2>
+                    <img src="first.jpg" alt="three heroes" />
+                    <p>
+                        Так как ширина наших пунктов выставлена в процентах, я решил добавить им в стили box-sizing: border-box,
+                        чтобы мы могли прописывать им любые границы или отступы, и при этом не боясь, что наша вёрстка поедет.
+                        Вообще, надо заметить, что само по себе box-sizing очень полезное свойство, которое, на мой взгляд,
+                        стоит применять в большинстве задач. Обязательно почитайте о нём.
+
+                        Ну, а теперь включаем flexbox'ы:
+                        Помогите: понадобилось сделать так как на рисунке, но во-первых что-то не получается растянуть элемент LI на всю высоту (100%). Прежде всего для Mozilla.
+
+                        Есть горизонтальный список (элементы LI, вложенные в UL). Элементы LI в свою очередь являются
+                        контейнерами, наподобие DIV. Нужно растянуть все LI по высоте UL, чтобы небыло зазоров сверху и снизу.
+                        А затем расположить прилепить контент к верхней и нижней границам LI-контейнеров.
+                        Помогите: понадобилось сделать так как на рисунке, но во-первых что-то не получается растянуть элемент LI на всю высоту (100%). Прежде всего для Mozilla.
+
+                        Есть горизонтальный список (элементы LI, вложенные в UL). Элементы LI в свою очередь являются
+                        контейнерами, наподобие DIV. Нужно растянуть все LI по высоте UL, чтобы небыло зазоров сверху и снизу.
+                        А затем расположить прилепить контент к верхней и нижней границам LI-контейнеров.
+                    </p>
+                    <li id = "cursiv">
+                        Курсивный пункт<sup>2</sup>
+                    </li>
+                    <li id="bold">
+                        Жирный пункт
+                    </li>
+                    <h3 >Список товаров в магазине</h3>
+                    <table>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Название</th>
+                            <th>Цена</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">1</td>
+                            <td>Меч</td>
+                            <td style="text-align: center">10</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">2</td>
+                            <td>Булава</td>
+                            <td style="text-align: center">5</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">3</td>
+                            <td>Верный конь</td>
+                            <td style="text-align: center">15</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id = "signUp">
+                    <form>
+                        <h3>Логин :</h3>
+                        <input type="text" value="login" />
+                        <h3>Пароль :</h3>
+                        <input type="password" value="*****"/>
+                        <select id="roles">
+                            <option selected="Admin">Admin</option>
+                            <option value="Tester">Tester</option>
+                            <option value="User">User</option>
+                        </select>
+                        <span>
+                            <input type="checkbox" id = "chRemember" />
+                            Запомнить меня</span>
+                        <input type="submit" value="Вход" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <span>&#169 2018 Основы HTML</span>
+        </footer>
+    </body>
+</html>

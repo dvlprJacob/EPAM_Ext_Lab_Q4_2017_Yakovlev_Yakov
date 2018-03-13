@@ -1,0 +1,161 @@
+img{
+	float :right;
+	width : 200px;
+	height : 120px;
+	position : relative;
+}
+.page{
+    width : 100%;
+ 	border : 2px solid black;
+}
+
+#pageHeader{
+	height : 100px;
+	border-bottom : 2px solid black;
+	text-align : center;
+	color : blue;
+} 
+
+.pageBody{
+	display : table;
+    width : 100%;
+} 
+
+#main{
+	width: 200px;
+    display: table-cell;
+	float : left;
+	height : 100%;
+	padding-left : 5px;
+	color : blue;
+}
+
+#content{
+	width : 66%;
+	height: auto;
+	border-left : 2px solid black;
+	border-right : 2px solid black;
+	padding-left : 5px;
+	padding-right : 5px;
+    display: inline-block;
+}
+
+#signUp{
+	float : right;
+	width : 200px;
+	height : 100%;
+	padding-left : 5px;
+	padding-right : 5px;
+	display: table-cell;
+} 
+
+#content h2{
+	float : top;
+	text-align : center;
+	color : blue;
+}
+
+#content p{
+	text-align : top;
+}
+
+#content h3{
+	color : blue;
+	font-weight : bold;
+}
+
+span{
+    display: inline-block;
+    width: 100%;
+}
+
+footer{
+	padding : 5px 0;
+	padding-left : 10px;
+	margin-right : -4px;
+	border-left : 2px solid black;
+	border-right : 2px solid black;
+	border-bottom : 2px solid black;
+}
+footer span{
+	margin : inherit;
+}
+
+ul{
+	padding : 2px;
+}
+
+li{
+	list-style-type : none;
+	color : rgb(30, 144, 255);
+	margin : 6px;
+}
+
+li a span{
+	text-decoration :underline;
+}
+
+#content li{
+	list-style-type : square;
+	margin : 2%;
+	margin-left : 10%;
+}
+
+#bold{
+	font-weight : bold;
+	color : black;
+}
+
+#cursiv{
+	font-style : italic;
+	color : black;
+}
+
+
+input{
+	margin-bottom : 30px;
+	width : 80%;
+}
+
+#roles{
+	margin-bottom : 20px;
+	width : 80%;
+}
+
+input[type=checkbox]{
+	margin-bottom : 20px;
+	width : 15px;
+	height : 15px;
+}
+
+input[type=submit]{
+	width : 80%;
+	border-radius : 6px;
+	
+}
+
+form{
+	height : 100%;
+}
+
+table {
+    
+}
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+	border-collapse: collapse;
+	padding : 5px;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+th{
+	text-align:left;
+}
+

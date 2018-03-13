@@ -1,0 +1,22 @@
+ul{
+	margin : 2px;
+	padding : 2px;
+}
+
+li{
+	list-style-type : none;
+	background-color : rgb(254, 243, 150);
+	color : rgb(149, 47, 13);
+	margin : 6px;
+}
+
+div{
+	width : 200px;
+	word-spacing : breack all;
+	border : 1px;
+	border-color : rgb(149, 47, 13);
+	background-color : rgb(254, 243, 150);
+	border-radius : 6px;
+	box-shadow : 6px 6px rgb(149, 47, 13);
+	box-sizing : border-box;
+}

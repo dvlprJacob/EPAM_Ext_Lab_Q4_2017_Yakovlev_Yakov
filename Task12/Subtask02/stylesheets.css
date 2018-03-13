@@ -1,0 +1,57 @@
+hr {
+    width : 99%;
+    border: 1px solid white;
+    margin-bottom: 25px;
+}
+
+span{
+    display: inline-block;
+    width: 45%;
+}
+
+#regForm{
+    width : 100%
+    margin : 15px;
+    padding : 15px;
+    border : 2px;
+    border-color : rgb(0,0,205);
+    background : rgb(30, 144, 255);
+}
+
+#email{
+	width :  81%;
+}
+
+#password{
+    width : 45%;
+    display: inline-block;
+}
+
+#passwordRepeat{
+   display: inline-block;
+   width : 45%;
+}
+
+input[type = submit]{
+    color: black;
+    padding: 8px 20px;
+    margin: 25px 0;
+    border: none;
+    cursor: pointer;
+    width: 8%;
+    background :  rgb(238, 221, 130)
+}
+
+#twoColumn{
+   width : 100%;
+   margin - bottom : 20px;
+   margin: 25px 0;
+}
+
+input[type=text]{
+   width : 80%;
+}
+
+#repeat{
+	padding-left : 4px;
+}
