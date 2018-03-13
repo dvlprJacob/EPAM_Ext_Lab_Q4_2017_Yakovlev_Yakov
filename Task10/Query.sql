@@ -160,7 +160,7 @@ ORDER BY Country
 
 SELECT ProductName
 FROM Products
-WHERE ProductName LIKE ('%cho[a-z]olade%') -- можно проще, используя вместо [a-z] "_"
+WHERE ProductName LIKE ('%cho_olade%')
 
 /*
 	5.1 Найти общую сумму всех заказов из таблицы Order Details с учетом количества закупленных товаров и
@@ -332,7 +332,14 @@ EXECUTE [dbo].[SP_ShippedOrdersDiff]
 
 -- Employee with ID 2 is not a boss (ReportTo column is NULL)
 
-SELECT [dbo].[FN_IsBoss](2) AS 'Is boss' --мне кажется, что у Fuller должны быть подчиненные)
+SELECT [dbo].[FN_IsBoss](2) AS 'Is boss'
+/*
+		Может я что-то не понял, но у меня у Fuller-a поле ReportsTo = null, запрос
+	SELECT FirstName,LastName,EmployeeID FROM Employees WHERE ReportsTo IS NULL
+	возвращает одну запись : Andrew Fuller 2
+	SELECT COUNT(*) FROM Employees : 9
+    SELECT COUNT(*) FROM Employees WHERE ReportsTo IS NULL : 1
+*/
 
 -- For everyone
 
