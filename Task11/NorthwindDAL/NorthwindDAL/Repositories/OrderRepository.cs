@@ -9,6 +9,8 @@
     using System.IO;
     using NorthwindDAL.Helpers;
     using NorthwindDAL.Models;
+    using Helpers.TableFieldNames;
+    using Helpers.StoredProcedureReturnFields;
 
     public class OrderRepository
     {
@@ -24,10 +26,6 @@
                 var connectionStringSection = ConfigurationManager.ConnectionStrings["NorthwindConnection"];
                 this.connectionString = connectionStringSection.ConnectionString;
                 this.providerFactory = DbProviderFactories.GetFactory(connectionStringSection.ProviderName);
-            }
-            catch (IOException exc)//todo pn и зачем ты его заглушил?
-            {
-                // ...
             }
             catch (Exception exc)
             {
@@ -60,20 +58,20 @@
                         while (reader.Read())
                         {
                             Orders order = new Orders();
-                            order.OrderID = (int)reader["OrderID"];//todo pn было бы здорово вынести поля в константы (поменяются в базе - поменяешь в одном месте)
-                            order.CustomerID = reader["CustomerID"] as string;
-                            order.EmployeeID = reader["EmployeeID"] as int?;
-                            order.OrderDate = reader["OrderDate"] as DateTime?;
-                            order.RequiredDate = reader["RequiredDate"] as DateTime?;
-                            order.ShippedDate = reader["ShippedDate"] as DateTime?;
-                            order.ShipVia = reader["ShipVia"] as int?;
-                            order.Freight = reader["Freight"] as decimal?;
-                            order.ShipName = reader["ShipName"] as string;
-                            order.ShipAddress = reader["ShipAddress"] as string;
-                            order.ShipCity = reader["ShipCity"] as string;
-                            order.ShipRegion = reader["ShipRegion"] as string;
-                            order.ShipPostalCode = reader["ShipPostalCode"] as string;
-                            order.ShipCountry = reader["ShipCountry"] as string;
+                            order.OrderID = (int)reader[OrdersFields.OrderID];
+                            order.CustomerID = reader[OrdersFields.CustomerID] as string;
+                            order.EmployeeID = reader[OrdersFields.EmployeeID] as int?;
+                            order.OrderDate = reader[OrdersFields.OrderDate] as DateTime?;
+                            order.RequiredDate = reader[OrdersFields.RequiredDate] as DateTime?;
+                            order.ShippedDate = reader[OrdersFields.ShippedDate] as DateTime?;
+                            order.ShipVia = reader[OrdersFields.ShipVia] as int?;
+                            order.Freight = reader[OrdersFields.Freight] as decimal?;
+                            order.ShipName = reader[OrdersFields.ShipName] as string;
+                            order.ShipAddress = reader[OrdersFields.ShipAddress] as string;
+                            order.ShipCity = reader[OrdersFields.ShipCity] as string;
+                            order.ShipRegion = reader[OrdersFields.ShipRegion] as string;
+                            order.ShipPostalCode = reader[OrdersFields.ShipPostalCode] as string;
+                            order.ShipCountry = reader[OrdersFields.ShipCountry] as string;
 
                             OrdersList temp = new OrdersList();
                             temp.AllOrders = order;
@@ -122,61 +120,63 @@
                     connection.ConnectionString = this.connectionString;
                     connection.Open();
 
-                    SqlCommand command = (SqlCommand)connection.CreateCommand();
-                    command.CommandText = "SELECT * FROM [dbo].[Orders] WHERE OrderID = @id";
-                    command.Parameters.AddWithValue("@id", orderId);
+                    SqlCommand commandSelOrder = (SqlCommand)connection.CreateCommand();
+                    commandSelOrder.CommandText = "SELECT * FROM [dbo].[Orders] WHERE OrderID = @id";
+                    commandSelOrder.Parameters.AddWithValue("@id", orderId);
 
-                    using (IDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = commandSelOrder.ExecuteReader())
                     {
                         reader.Read();
 
-                        orderInfo.Order.OrderID = (int)reader["OrderID"];
-                        orderInfo.Order.CustomerID = reader["CustomerID"] as string;
-                        orderInfo.Order.EmployeeID = reader["EmployeeID"] as int?;
-                        orderInfo.Order.OrderDate = reader["OrderDate"] as DateTime?;
-                        orderInfo.Order.RequiredDate = reader["RequiredDate"] as DateTime?;
-                        orderInfo.Order.ShippedDate = reader["ShippedDate"] as DateTime?;
-                        orderInfo.Order.ShipVia = reader["ShipVia"] as int?;
-                        orderInfo.Order.Freight = reader["Freight"] as decimal?;
-                        orderInfo.Order.ShipName = reader["ShipName"] as string;
-                        orderInfo.Order.ShipAddress = reader["ShipAddress"] as string;
-                        orderInfo.Order.ShipCity = reader["ShipCity"] as string;
-                        orderInfo.Order.ShipRegion = reader["ShipRegion"] as string;
-                        orderInfo.Order.ShipPostalCode = reader["ShipPostalCode"] as string;
-                        orderInfo.Order.ShipCountry = reader["ShipCountry"] as string;
+                        orderInfo.Order.OrderID = (int)reader[OrdersFields.OrderID];
+                        orderInfo.Order.CustomerID = reader[OrdersFields.CustomerID] as string;
+                        orderInfo.Order.EmployeeID = reader[OrdersFields.EmployeeID] as int?;
+                        orderInfo.Order.OrderDate = reader[OrdersFields.OrderDate] as DateTime?;
+                        orderInfo.Order.RequiredDate = reader[OrdersFields.RequiredDate] as DateTime?;
+                        orderInfo.Order.ShippedDate = reader[OrdersFields.ShippedDate] as DateTime?;
+                        orderInfo.Order.ShipVia = reader[OrdersFields.ShipVia] as int?;
+                        orderInfo.Order.Freight = reader[OrdersFields.Freight] as decimal?;
+                        orderInfo.Order.ShipName = reader[OrdersFields.ShipName] as string;
+                        orderInfo.Order.ShipAddress = reader[OrdersFields.ShipAddress] as string;
+                        orderInfo.Order.ShipCity = reader[OrdersFields.ShipCity] as string;
+                        orderInfo.Order.ShipRegion = reader[OrdersFields.ShipRegion] as string;
+                        orderInfo.Order.ShipPostalCode = reader[OrdersFields.ShipPostalCode] as string;
+                        orderInfo.Order.ShipCountry = reader[OrdersFields.ShipCountry] as string;
                     }
 
-                    command.CommandText = "SELECT * FROM [dbo].[Order Details] WHERE OrderID = @id";
+                    var commandSelOrderDet = (SqlCommand)connection.CreateCommand();
+                    commandSelOrderDet.Parameters.AddWithValue("@id", orderId);
+                    commandSelOrderDet.CommandText = "SELECT * FROM [dbo].[Order Details] WHERE OrderID = @id";
 
-                    using (IDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = commandSelOrderDet.ExecuteReader())
                     {
                         reader.Read();
 
                         orderInfo.Deatails.OrderID = orderId;
-                        orderInfo.Deatails.ProductID = (int)reader["ProductID"];
-                        orderInfo.Deatails.UnitPrice = (decimal)reader["UnitPrice"];
-                        orderInfo.Deatails.Quantity = Convert.ToInt32(reader["Quantity"]);
-                        orderInfo.Deatails.Discount = Convert.ToDouble(reader["Discount"]);
+                        orderInfo.Deatails.ProductID = (int)reader[OrderDetailsFields.ProductID];
+                        orderInfo.Deatails.UnitPrice = (decimal)reader[OrderDetailsFields.UnitPrice];
+                        orderInfo.Deatails.Quantity = Convert.ToInt32(reader[OrderDetailsFields.Quantity]);
+                        orderInfo.Deatails.Discount = Convert.ToDouble(reader[OrderDetailsFields.Discount]);
                     }
 
-                    command.Parameters.RemoveAt(0); //todo pn лучше создай новую команду 
-                    command.CommandText = "SELECT * FROM [dbo].[Products] WHERE ProductID = @prodId";
-                    command.Parameters.AddWithValue("@prodId", orderInfo.Deatails.ProductID);
+                    var commandSelProduct = (SqlCommand)connection.CreateCommand();
+                    commandSelProduct.CommandText = "SELECT * FROM [dbo].[Products] WHERE ProductID = @prodId";
+                    commandSelProduct.Parameters.AddWithValue("@prodId", orderInfo.Deatails.ProductID);
 
-                    using (IDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = commandSelProduct.ExecuteReader())
                     {
                         reader.Read();
 
-                        orderInfo.Product.ProductID = (int)reader["ProductID"];
-                        orderInfo.Product.ProductName = (string)reader["ProductName"];
-                        orderInfo.Product.SupplierID = reader["SupplierID"] as int?;
-                        orderInfo.Product.CategoryID = reader["CategoryID"] as int?;
-                        orderInfo.Product.QuantityPerUnit = (string)reader["QuantityPerUnit"];
-                        orderInfo.Product.UnitPrice = reader["UnitPrice"] as decimal?;
-                        orderInfo.Product.UnitsInStock = reader["UnitsInStock"] as int?;
-                        orderInfo.Product.UnitsOnOrder = reader["UnitsOnOrder"] as int?;
-                        orderInfo.Product.ReorderLevel = reader["ReorderLevel"] is System.DBNull ? null : (short?)(reader["ReorderLevel"]);
-                        orderInfo.Product.Discontinued = (bool)reader["Discontinued"];
+                        orderInfo.Product.ProductID = (int)reader[ProductsFields.ProductID];
+                        orderInfo.Product.ProductName = (string)reader[ProductsFields.ProductName];
+                        orderInfo.Product.SupplierID = reader[ProductsFields.SupplierID] as int?;
+                        orderInfo.Product.CategoryID = reader[ProductsFields.CategoryID] as int?;
+                        orderInfo.Product.QuantityPerUnit = (string)reader[ProductsFields.QuantityPerUnit];
+                        orderInfo.Product.UnitPrice = reader[ProductsFields.UnitPrice] as decimal?;
+                        orderInfo.Product.UnitsInStock = reader[ProductsFields.UnitsInStock] as int?;
+                        orderInfo.Product.UnitsOnOrder = reader[ProductsFields.UnitsOnOrder] as int?;
+                        orderInfo.Product.ReorderLevel = reader[ProductsFields.ReorderLevel] is System.DBNull ? null : (short?)(reader["ReorderLevel"]);
+                        orderInfo.Product.Discontinued = (bool)reader[ProductsFields.Discontinued];
                     }
                 }
 
@@ -324,8 +324,8 @@
                     {
                         while (reader.Read())
                         {
-                            result.ProductName.Add((string)reader["ProductName"]);
-                            result.Total.Add((int)reader["Total"]);
+                            result.ProductName.Add((string)reader[CustOrderHistFields.ProductName]);
+                            result.Total.Add((int)reader[CustOrderHistFields.Total]);
                         }
                     }
                 }
@@ -377,11 +377,11 @@
                 {
                     while (reader.Read())
                     {
-                        result.ProductName.Add((string)reader["ProductName"]);
-                        result.UnitPrice.Add((decimal)reader["UnitPrice"]);
-                        result.Quantity.Add((short)reader["Quantity"]);
-                        result.Discount.Add((int)reader["Discount"]);
-                        result.ExtendedPrice.Add((decimal)reader["ExtendedPrice"]);
+                        result.ProductName.Add((string)reader[CustOrdersDetailFields.ProductName]);
+                        result.UnitPrice.Add((decimal)reader[CustOrdersDetailFields.UnitPrice]);
+                        result.Quantity.Add((short)reader[CustOrdersDetailFields.Quantity]);
+                        result.Discount.Add((int)reader[CustOrdersDetailFields.Discount]);
+                        result.ExtendedPrice.Add((decimal)reader[CustOrdersDetailFields.ExtendedPrice]);
                     }
                 }
             }

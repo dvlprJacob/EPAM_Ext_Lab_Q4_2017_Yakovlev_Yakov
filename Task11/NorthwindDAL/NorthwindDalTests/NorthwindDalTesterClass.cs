@@ -218,8 +218,8 @@
         }
 
         [TestMethod]
-        public void SetOrderDateTest() //todo pn тест упал (см в личку в скайп)
-		{
+        public void SetOrderDateTest()
+        {
             using (DbConnection connection = this.providerFactory.CreateConnection())
             {
                 var date = new DateTime();
@@ -228,28 +228,37 @@
                 connection.ConnectionString = this.connectionString;
                 connection.Open();
 
-                var command = (SqlCommand)connection.CreateCommand();
-                command.CommandText = "SELECT IDENT_CURRENT('dbo.Orders')";
-                var orderId = Convert.ToInt32(command.ExecuteScalar());
+                //  ident_curent(‘Orders’) возвращал id не существующей записи, из-за чего selectedDate инициализировалось некорректно
+                var commandSelOrderId = (SqlCommand)connection.CreateCommand();
+                commandSelOrderId.CommandText = "SELECT TOP 1 OrderID FROM [dbo].[Orders] WHERE OrderDate IS NULL";
+                var orderId = Convert.ToInt32(commandSelOrderId.ExecuteScalar());
+
                 this.repository.SetOrderDate(orderId, date);
 
-                command.CommandText = "SELECT DAY(OrderDate), MONTH(OrderDate), YEAR(OrderDate) FROM Orders WHERE OrderID = IDENT_CURRENT('dbo.Orders')";
-                DateTime selectDate = new DateTime();
-                using (IDataReader reader = command.ExecuteReader())
+                var commandCheckRecord = (SqlCommand)connection.CreateCommand();
+                commandCheckRecord.Parameters.AddWithValue("@id", orderId);
+                commandCheckRecord.CommandText = "SELECT DAY(OrderDate), MONTH(OrderDate), YEAR(OrderDate) FROM Orders WHERE OrderID = @id";
+                DateTime selectedDate = new DateTime();
+                using (IDataReader reader = commandCheckRecord.ExecuteReader())
                 {
                     reader.Read();
-                    selectDate = new DateTime((int)reader[2], (int)reader[1], (int)reader[0]);
+                    selectedDate = new DateTime((int)reader[2], (int)reader[1], (int)reader[0]);
                 }
 
-                Assert.AreEqual(selectDate.Year, date.Year);
-                Assert.AreEqual(selectDate.Month, date.Month);
-                Assert.AreEqual(selectDate.Day, date.Day);
+                Assert.AreEqual(selectedDate.Year, date.Year);
+                Assert.AreEqual(selectedDate.Month, date.Month);
+                Assert.AreEqual(selectedDate.Day, date.Day);
+
+                var commandRollback = (SqlCommand)connection.CreateCommand();
+                commandRollback.CommandText = "UPDATE [dbo].[Orders] SET OrderDate = NULL WHERE OrderID = @id";
+                commandRollback.Parameters.AddWithValue("@id", orderId);
+                commandRollback.ExecuteNonQuery();
             }
         }
 
         [TestMethod]
-        public void SetShippedDateTest() //todo pn тест упал (см в личку в скайп)
-		{
+        public void SetShippedDateTest()
+        {
             using (DbConnection connection = this.providerFactory.CreateConnection())
             {
                 var date = new DateTime();
@@ -258,22 +267,31 @@
                 connection.ConnectionString = this.connectionString;
                 connection.Open();
 
-                var command = (SqlCommand)connection.CreateCommand();
-                command.CommandText = "SELECT IDENT_CURRENT('dbo.Orders')";
-                var orderId = Convert.ToInt32(command.ExecuteScalar());
+                //  ident_curent(‘Orders’) возвращал id не существующей записи, из-за чего selectedDate инициализировалось некорректно
+                var commandSelOrderId = (SqlCommand)connection.CreateCommand();
+                commandSelOrderId.CommandText = "SELECT TOP 1 OrderID FROM [dbo].[Orders] WHERE ShippedDate IS NULL";
+                var orderId = Convert.ToInt32(commandSelOrderId.ExecuteScalar());
+
                 this.repository.SetShippedDate(orderId, date);
 
-                command.CommandText = "SELECT DAY(ShippedDate), MONTH(ShippedDate), YEAR(ShippedDate) FROM Orders WHERE OrderID = IDENT_CURRENT('dbo.Orders')";
-                DateTime selectDate = new DateTime();
-                using (IDataReader reader = command.ExecuteReader())
+                var commandCheckRecord = (SqlCommand)connection.CreateCommand();
+                commandCheckRecord.Parameters.AddWithValue("@id", orderId);
+                commandCheckRecord.CommandText = "SELECT DAY(ShippedDate), MONTH(ShippedDate), YEAR(ShippedDate) FROM Orders WHERE OrderID = @id";
+                DateTime selectedDate = new DateTime();
+                using (IDataReader reader = commandCheckRecord.ExecuteReader())
                 {
                     reader.Read();
-                    selectDate = new DateTime((int)reader[2], (int)reader[1], (int)reader[0]);
+                    selectedDate = new DateTime((int)reader[2], (int)reader[1], (int)reader[0]);
                 }
 
-                Assert.AreEqual(selectDate.Year, date.Year);
-                Assert.AreEqual(selectDate.Month, date.Month);
-                Assert.AreEqual(selectDate.Day, date.Day);
+                Assert.AreEqual(selectedDate.Year, date.Year);
+                Assert.AreEqual(selectedDate.Month, date.Month);
+                Assert.AreEqual(selectedDate.Day, date.Day);
+
+                var commandRollback = (SqlCommand)connection.CreateCommand();
+                commandRollback.CommandText = "UPDATE [dbo].[Orders] SET ShippedDate = NULL WHERE OrderID = @id";
+                commandRollback.Parameters.AddWithValue("@id", orderId);
+                commandRollback.ExecuteNonQuery();
             }
         }
 
@@ -333,7 +351,11 @@
                 connection.Open();
 
                 var command = (SqlCommand)connection.CreateCommand();
-                command.CommandText = "SELECT TOP 1 OrderID FROM [dbo].[Orders]";
+
+                //  SELECT TOP 1 OrderID FROM [dbo].[Orders] - вернул OrderID записи = 11079, у которого все поля дат null :
+                //  11079;DUMON;5;NULL;NULL;NULL;NULL;0,00;Du monde entier;67, rue des Cinquante Otages;Nantes;NULL;44000;France
+                //  Добавление условия выборки "WHERE OrderDate IS NOT NULL" исправило ситуацию
+                command.CommandText = "SELECT TOP 1 OrderID FROM [dbo].[Orders] WHERE OrderDate IS NOT NULL";
                 result.OrderId = (int)command.ExecuteScalar();
                 resExecMethod = this.repository.GetCustOrdersDetail(result.OrderId);
 

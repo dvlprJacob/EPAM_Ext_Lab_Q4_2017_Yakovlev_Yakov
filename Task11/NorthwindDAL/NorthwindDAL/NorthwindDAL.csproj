@@ -43,6 +43,11 @@
   <ItemGroup>
     <Compile Include="Helpers\CustOrderHist.cs" />
     <Compile Include="Helpers\CustOrdersDetail.cs" />
+    <Compile Include="Helpers\StoredProcedureReturnFields\CustOrdersDetailFields.cs" />
+    <Compile Include="Helpers\StoredProcedureReturnFields\CustOrderHistFields.cs" />
+    <Compile Include="Helpers\TableFieldNames\OrderDetailsFields.cs" />
+    <Compile Include="Helpers\TableFieldNames\OrdersFields.cs" />
+    <Compile Include="Helpers\TableFieldNames\ProductsFields.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Helpers\OrdersList.cs" />
     <Compile Include="Helpers\DeliveryStatus.cs" />
