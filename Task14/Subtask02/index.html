@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="func.js"></script>
+        <title>JS task02</title>
+    </head>
+
+    <body>
+        <div>
+            <header>
+                <span> Задание 2</span>
+                <p>
+                    Написать функцию для подсчёта результата выражения. На вход приходит строка с арифметическим выражением. Внутри выражения
+                    записываются вещественные числа (в качестве разделителя целой и дробной части используется точка), разделённые
+                    математическими операторами (+-*/). Между числом и оператором может стоять пробел. В конце строки стоит знак «равно».
+                    <hr />
+                    Пример
+                    <br />
+                    3.5 +4*10-5.3 /5 =
+                    <br />
+                    Результат выражения вычисляется последовательно. Приоритет операций не учитывается. Результат выводить с точностью до 2 знаков
+                    после запятой.
+                </p>
+                <hr />
+                <span>Input expression :</span>
+            </header>
+            <div>
+                <textarea id="textIn">3.5 +4*10-5.3 /5=</textarea>
+                <input type="submit" id="subCalcExec" value="Calculate" onclick = "calcExec()"/>
+            </div>
+            <div>
+                <span>Result :</span>
+                <p id="res"></p>
+            </div>
+        </div>
+    </body>
+</html>
