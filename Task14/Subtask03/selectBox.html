@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./placeBlock.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="wrColumn">
+                <span>Available</span>
+                <select class="selectOption" id="left1" multiple="auto"></select>
+            </div>
+            <div class="wrColumn">
+                <form id = "action">
+                    <input type="button" name="allR" onclick="allToRight('left1','right1')" value=">>" />
+                    <input type="button" name="selR" onclick="selToRight('left1','right1')" value=">" />
+                    <input type="button" name="selL" onclick="selToLeft('right1','left1')" value="<" />
+                    <input type="button" name="allL" onclick="allToLeft('right1','left1')" value="<<" />
+                </form>
+            </div>
+            <div class="wrColumn">
+                <span> Selected </span>
+                <select class="selectOption" id="right1" multiple="auto"></select>
+            </div>
+
+        </div>
+        <script>
+			init('left1');
+        </script>
+        <div id="second">
+            <div class="wrapper">
+                <div class="wrColumn">
+                    <span>Available</span>
+                    <select class="selectOption" id="left2" multiple="auto"></select>
+                </div>
+                <div class="wrColumn">
+                    <form id = "action">
+                        <input type="button" name="allR" onclick="allToRight('left2','right2')" value=">>" />
+                        <input type="button" name="selR" onclick="selToRight('left2','right2')" value=">" />
+                        <input type="button" name="selL" onclick="selToLeft('right2','left2')" value="<" />
+                        <input type="button" name="allL" onclick="allToLeft('right2','left2')" value="<<" />
+                    </form>
+                </div>
+                <div class="wrColumn">
+                    <span> Selected </span>
+                    <select class="selectOption" id="right2" multiple="auto"></select>
+                </div>
+
+            </div>
+            <script>
+				init('left2');
+            </script>
+        </div>
+        <div id="third">
+            <div class="wrapper">
+                <div class="wrColumn">
+                    <span>Available</span>
+                    <select class="selectOption" id="left3" multiple="auto"></select>
+                </div>
+                <div class="wrColumn">
+                    <form id = "action">
+                        <input type="button" name="allR" onclick="allToRight('left3','right3')" value=">>" />
+                        <input type="button" name="selR" onclick="selToRight('left3','right3')" value=">" />
+                        <input type="button" name="selL" onclick="selToLeft('right3','left3')" value="<" />
+                        <input type="button" name="allL" onclick="allToLeft('right3','left3')" value="<<" />
+                    </form>
+                </div>
+                <div class="wrColumn">
+                    <span> Selected </span>
+                    <select class="selectOption" id="right3" multiple="auto"></select>
+                </div>
+
+            </div>
+            <script>
+				init('left3');
+            </script>
+        </div>
+    </body>
+
+</html>

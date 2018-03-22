@@ -1,0 +1,66 @@
+.wrapper {
+	width: 50vw;
+	height: 60vh;
+	display: block;
+	padding: 3px;
+	border: 2px solid rgb(135,206,250);
+	background: rgb(0,191,255);
+}
+
+.wrColumn {
+	display: inline-block;
+	height: inherit;
+	width: 30%;
+	float: left;
+	position: static;
+}
+
+.wrColumn select[class=selectOption] {
+	width: 20vw;
+	height: 90%;
+	margin-bottom: 5%;
+	background: rgb(135,206,250);
+}
+
+.wrColumn form[id = action] {
+	margin-top: 5%;
+	margin-left: 30%;
+	padding: 1%;
+	width: 60%;
+	height: 100%;
+}
+
+.wrColumn form[id = action] input[type=button] {
+	margin-bottom: 1%;
+	display: table-row;
+	height: 24%;
+	width: 80%;
+	float: right;
+	background: rgb(211,211,211);
+}
+
+.wrColumn .selectOption option {
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: -5%;
+	height: 18%;
+}
+
+.wrColumn option:checked {
+	background: rgb(135,206,250) linear-gradient(0deg, rgb(135,206,250) 0%, rgb(135,206,250) 100%);
+}
+
+.wrColumn span {
+	line-height: 0.5 vh;
+	font-size: 2.5 vw;
+}
+
+#second {
+	margin-top: 3px;
+	float: right;
+}
+
+#third {
+	margin-top: 3px;
+	float: left;
+}

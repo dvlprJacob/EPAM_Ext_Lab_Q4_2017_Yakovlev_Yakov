@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Three</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./func.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="timer">
+                <span id="sec"></span>
+                <span>sec</span>
+            </div>
+            <div>
+                <form class="jump">
+                    <input type="button" id="btnBack" value="&#8592" onclick="back()"/>
+                    <input type="button" id="btnNext" value="&#8594" onclick="next()"/>
+                    <input type="button" id="btnPause" value=" || "/>
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            setTime(3);
+            pause();
+        </script>
+    </body>
+</html>

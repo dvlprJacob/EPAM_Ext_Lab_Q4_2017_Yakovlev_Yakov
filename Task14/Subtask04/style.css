@@ -1,0 +1,12 @@
+.wrapper {
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.timer {
+	text-align: left;
+	color: black;
+	font-size: 30px;
+	margin-bottom: 30px;
+	margin-left: 20px;
+}
