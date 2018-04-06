@@ -1,0 +1,51 @@
+﻿@model NorthwindPL.Models.OrdersDomainModel
+@{
+    Layout = null;
+}
+<div>
+    <table class="table" id="orderDetails">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model=>Model.Order.Product.ProductName)
+            </th>
+            <th>
+                Supplier
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Order.Product.UnitPrice)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Discount
+            </th>
+        </tr>
+
+        @{
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model=>Model.Order.Product.ProductName)
+                </td>
+                    @Html.Action("GetSupplier", "Orders", new { id = Model.Order.Product.SupplierID })
+                <td>
+                    @Html.DisplayFor(Model=>Model.Order.Deatails.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model=>Model.Order.Deatails.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.Order.Deatails.Discount)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        @Html.Action("GetCustomers","Orders")
+    </div>
+</div>

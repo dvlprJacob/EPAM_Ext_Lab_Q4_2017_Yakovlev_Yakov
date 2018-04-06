@@ -1,0 +1,67 @@
+﻿@model NorthwindPL.Models.OrdersGeneralDataViewModel
+@{
+    ViewBag.Title = "Northwind PL Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/css")
+
+<div>
+    @Html.ActionLink("Create", "CreateOrder", "Orders", new NorthwindPL.Models.CreateOrderViewModel() , new { @class = "updateOrder" })
+</div>
+<div id="modCreate" class="modal fade">
+    <div id="dialogCreateOrderContent" class="modal-dialog"></div>
+</div>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Customer
+            </th>
+            <th>
+                ShippedStatus
+            </th>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                Cost
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Customer, "Index", "Orders", new { orderID = item.OrderID }, null)
+                </td>
+                <td>
+                    @item.ShippedStatus
+                </td>
+                <td>
+                    @item.OrderDate
+                </td>
+                <td>
+                    @item.Cost
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @{ 
+        int offset = ViewBag.offset - 2 * ViewBag.currRecords;
+        if(offset<0)
+        {
+            offset = 0;
+        }
+    }
+    <hr />
+    <span class="ordersListener">
+        <a href="@Url.Action("Index","Home", new { offset , recCount = ViewBag.currRecords })">&#x25C0</a>
+        <a href="@Url.Action("Index","Home", new { offset = ViewBag.offset, recCount = ViewBag.currRecords })">&#x25B6</a>
+    </span>
+</div>
+@Scripts.Render("~/Scripts/js")

@@ -1,0 +1,4 @@
+﻿@model NorthwindPL.Models.CustomersViewModel
+
+@Html.DropDownList("customerId",Model.Customers)
+@Model.Customers.First().Value

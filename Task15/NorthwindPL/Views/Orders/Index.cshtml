@@ -1,0 +1,145 @@
+﻿@model NorthwindPL.Models.OrdersDomainModel
+@{
+    ViewBag.Title = string.Concat("Order № ", Model.Order.Order.OrderID, " Details");
+    Layout = "~/Views/Shared/_orderLayout.cshtml";
+}
+@Styles.Render("~/Content/css")
+<div>
+    <a href="@Url.Action("Index","Home", new { offset = 0, recCount = 12 })">Back</a>
+    @Html.ActionLink("Update", "UpdateOrder", "Orders", (NorthwindPL.Models.UpdateOrderViewModel)Model , new { @class = "updateOrder" })
+    @Html.ActionLink("Create", "CreateOrder", "Orders", new NorthwindPL.Models.CreateOrderViewModel(), new { @class = "createOrder" })
+</div>
+<div id="modUpdate" class="modal fade">
+    <div id="dialogUpdateOrderContent" class="modal-dialog"></div>
+</div>
+<div id="modCreate" class="modal fade">
+    <div id="dialogCreateOrderContent" class="modal-dialog"></div>
+</div>
+<hr />
+<div>
+    <table class="table" id="order">
+        <tr>
+            <th>
+                OrderID
+            </th>
+            <th>
+                CustomerID
+            </th>
+            <th>
+                EmployeeID
+            </th>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                RequiredDate
+            </th>
+            <th>
+                ShippedDate
+            </th>
+            <th>
+                ShipVia
+            </th>
+            <th>
+                Freight
+            </th>
+            <th>
+                ShipName
+            </th>
+            <th>
+                ShipAddress
+            </th>
+            <th>
+                ShipCity
+            </th>
+            <th>
+                ShipRegion
+            </th>
+            <th>
+                ShipPostalCode
+            </th>
+            <th>
+                ShipCountry
+            </th>
+        </tr>
+
+        @{
+            <tr>
+                <td>
+                    @Model.Order.Order.OrderID
+                </td>
+                <td>
+                    @Model.Order.Order.CustomerID
+                </td>
+                <td>
+                    @Model.Order.Order.EmployeeID
+                </td>
+                <td>
+                    @Html.DisplayFor(Model=>Model.Order.Order.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.Order.Order.RequiredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.Order.Order.ShippedDate)
+                </td>
+                <td>
+                    @Model.Order.Order.ShipVia
+                </td>
+                <td>
+                    @Model.Order.Order.Freight
+                </td>
+                <td>
+                    @Model.Order.Order.ShipName
+                </td>
+                <td>
+                    @Model.Order.Order.ShipAddress
+                </td>
+                <td>
+                    @Model.Order.Order.ShipCity
+                </td>
+                <td>
+                    @Model.Order.Order.ShipRegion
+                </td>
+                <td>
+                    @Model.Order.Order.ShipPostalCode
+                </td>
+                <td>
+                    @Model.Order.Order.ShipCountry
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.Partial("OrderDetails", Model)
+</div>
+@Scripts.Render("~/Scripts/js")
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".updateOrder").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogUpdateOrderContent').html(data);
+                    $('#modUpdate').modal('show');
+                });
+            });
+        })
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".createOrder").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogCreateOrderContent').html(data);
+                    $('#modCreate').modal('show');
+                });
+            });
+        })
+    </script>
+}

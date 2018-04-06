@@ -1,0 +1,41 @@
+﻿@model NorthwindPL.Models.UpdateOrderViewModel
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Update order № @Model.OrderID</h4>
+        <h3>@Model.Field.First().Text</h3>
+    </div>
+    <script type="text/javascript">
+        function getField() {
+            var f = $('#table').find('option:selected').map(function () {
+                alert(this.text);
+                return this.text;
+            })
+        };
+    </script>
+    @{ 
+        foreach(var opt in Model.Field)
+        {
+            opt.Selected = false;
+        }
+        var F = Model.Field.Where(f => f.Selected == true).First().Text;
+    }
+    <span>@F</span>
+    @using (Html.BeginForm("UpdateOrder", "Orders", new { recordId = Model.OrderID, field = Model.Field.Where(f=>f.Selected == true).First().Text } , FormMethod.Post))
+    {
+    <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Field)
+                    @Html.DropDownList("table", Model.Field)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewValue)
+                    @Html.EditorFor(m=>m.NewValue)
+                </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" id="btnUpdateOrderRecord">Update</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+    }
+</div>
