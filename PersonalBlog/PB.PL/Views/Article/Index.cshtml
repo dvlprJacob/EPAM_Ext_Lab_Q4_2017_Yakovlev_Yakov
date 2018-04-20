@@ -1,0 +1,97 @@
+﻿@model PB.PL.Models.ArticleContentVM
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isMyBlog = false;
+    if (Model != null)
+    {
+        isMyBlog = (Html.Action("IsUserBlog", "User", Model.BlogID).ToHtmlString() == "true");
+    }
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@Scripts.Render("~/Content/css")
+<div class="panel-default">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>@Html.DisplayFor(model => model.Title)</h1>
+            <p>
+                @Html.DisplayFor(model => model.Content)
+            </p>
+        </div>
+        <p>Tags : @Html.Action("Tags", "Article", new { id = Model.ArticleID })</p>
+        <p>
+        <p>
+            Theme : @Html.Action("Theme", "Article", new { id = Model.ThemeID })
+        </p>
+        <p>
+            <h6>Author - ...</h6>
+            <h6>Create - @Html.DisplayFor(model => model.CreateDate)</h6>
+            @if (Model.UpdateDate.HasValue)
+            {
+                <h6 class="pull-right">
+                    @Html.DisplayNameFor(model => model.UpdateDate) - @Html.DisplayFor(model => model.UpdateDate)
+                </h6>
+            }
+            @if (User.Identity != null && !string.IsNullOrWhiteSpace(User.Identity.Name))
+            {
+                <div class="label">
+                    @Html.ActionLink("Comment this", "Comment", "Article", new PB.PL.Models.Article.CreateCommentVM() { ArticleID = Model.ArticleID }, new { @class = "crCom" })
+                </div>
+                if (isMyBlog)
+                {
+                    <div class="label">
+                        @Html.ActionLink("Delete article", "DeleteArticle", "Article", new { artId = Model.ArticleID }, FormMethod.Get);
+                    </div>
+                    <div class="label">
+                        @Html.ActionLink("Edit", "Edit", "Article", new PB.PL.Models.EditArticleVM() { ArticleID = Model.ArticleID, Content = Model.Content, ThemeID = Model.ThemeID, Title = Model.Title }, FormMethod.Get);
+                    </div>
+                }
+            }
+        </p>
+    </div>
+    <div>
+        <div>
+            @Html.Action("Comments", "Article", new { id = Model.ArticleID })
+        </div>
+    </div>
+    <div id="modCom" class="modal fade">
+        <div id="dialCom" class="modal-dialog">
+        </div>
+    </div>
+    <div id="modDelCom" class="modal fade">
+        <div id="dialDelCom" class="modal-dialog"></div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".crCom").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialCom').html(data);
+                    $('#modCom').modal('show');
+                });
+            });
+        })
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".delCom").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#ddelcom').html(data);
+                    $('#moddelcom').modal('show');
+                });
+            });
+        })
+    </script>
+</div>
+    @Scripts.Render("~/Scripts/js")
+

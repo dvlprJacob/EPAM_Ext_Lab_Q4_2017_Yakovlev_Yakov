@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PB.PL.Models.Lists.CommentListVM>
+
+@{
+    Layout = null;
+}
+
+<section class="comments">
+@if (Model.Count() != 0) {
+    foreach (var com in Model) { 
+    <article class="comment">
+        <div class="comment-body">
+            <div class="text">
+                <p>@com.Messages.Content</p>
+            </div>
+            <p 
+               class="attribution">by @Html.Action("Commentator", "Article", new { id = com.Messages.UserID }) at @com.Messages.CreateDate
+                @if (User.Identity != null && !string.IsNullOrWhiteSpace(User.Identity.Name)) { 
+                    <ul class="list-inline">
+                        <li class="label">
+                                @Html.ActionLink("Comment this", "Comment", "Article", new PB.PL.Models.Article.CreateCommentVM() { ArticleID = @com.Messages.ArticleID, Parent = @com.Messages.CommentID }, new { @class = "crCom" })
+                        </li>
+                        @if (User.Identity.Name == "admin" || User.Identity.Name == Html.Action("Commentator", "Article", new { id = com.Messages.UserID }).ToHtmlString()) { 
+                            <li class="label">
+                                @Html.ActionLink("Delete", "DeleteComment", "Article", new { comId = @com.Messages.CommentID, artId = @com.Messages.ArticleID }, new { @class = "delCom" })
+                                </li>
+                        }
+</ul>
+                }
+            </p>
+            @if (com.Messages.ChildNodes != null) { 
+                <div class="comment-body-child">
+                    @foreach (var child in com.Messages.ChildNodes) {
+                        <article class="comment">
+                            <div class="comment-body">
+                                <div class="text">
+                                    <p>@child.Content</p>
+                                </div>
+                                <p class="attribution">
+                                    by @Html.Action("Commentator", "Article", new { id = child.UserID }) at @child.CreateDate
+                                        @if (User.Identity != null && !string.IsNullOrWhiteSpace(User.Identity.Name)) {
+                                            if (User.Identity.Name == "admin" || User.Identity.Name == @Html.Action("Commentator", "Article", new { id = child.UserID }).ToHtmlString()) { 
+                                                        @Html.ActionLink("Delete", "DeleteComment", "Article", new { comId = @child.CommentID, artId = @child.ArticleID }, new { @class = "delCom" })
+                                            }
+                                        }
+                                </p>
+                                </div>
+                        </article>
+                                        }
+                </div>
+                                        }
+        </div>
+    </article>
+                                            } }
+</section>​
+@Scripts.Render("~/Scripts/js")
+

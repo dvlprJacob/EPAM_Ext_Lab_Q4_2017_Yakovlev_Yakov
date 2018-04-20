@@ -1,0 +1,133 @@
+﻿@{
+    Layout = null;
+    string userName = string.Empty;
+
+    if (User.Identity != null && !string.IsNullOrWhiteSpace(User.Identity.Name))
+    {
+        userName = User.Identity.Name;
+    }
+    else
+    {
+        userName = "Guest";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/Content/css")
+    <title>
+        @ViewBag.Title
+    </title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul>
+                    Search :
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <li class="text-muted">
+                            <div class="form-group">
+                                <div class="row col-lg-12">
+                                    <input type="text" name="searchValue" />
+                                </div>
+                                <button type="submit" class="btn-sm">Find</button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                
+                @if (!(userName.CompareTo("Guest") == 0))
+                {
+                    <li class="text-primary">@Html.ActionLink(userName, "Index", "User", new { login = userName })</li>
+                    if (Html.Action("HaveBlog", "User", new { login = userName }).ToHtmlString() == "false")
+                    {
+                        <li class="text-info"><a href="@Url.Action("Create", "Blog", new PB.PL.Models.Blog.CreateBlogVM() { UserLogin = userName })">Create blog</a></li>
+                    }
+                    else
+                    {
+                        <li class="text-info"><a href="@Url.Action("MyBlog", "Blog", new { login = userName })">My Blog</a></li>
+                    }
+                    <li class="text-info">@Html.ActionLink("Sign Out", "Logoff", "User")</li>
+                }
+                else
+                {
+                    <li class="text-info">@Html.ActionLink("Sign In", "Logon", "User", null, new { @class = "logon" })</li>
+                    }
+                    <li class="text-info">@Html.ActionLink("Register", "Register", "User", new PB.PL.Models.RegistrationFormVM(), new { @class = "register" })</li>
+            </ul>
+
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="text-primary">Popular :</li>
+                    @Html.Action("PopularArticles", "Home")
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div id="modLogon" class="modal fade">
+            <div id="dialogLogonContent" class="modal-dialog"></div>
+        </div>
+        <div id="modRegister" class="modal fade">
+            <div id="dialogRegisterContent" class="modal-dialog"></div>
+        </div>
+        <div id="modCrBl" class="modal fade">
+            <div id="dialogCrBl" class="modal-dialog"></div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <script type="text/javascript">
+
+                $(function () {
+                    $.ajaxSetup({ cache: false });
+                    $(".crBlog").click(function (e) {
+
+                        e.preventDefault();
+                        $.get(this.href, function (data) {
+                            $('#dialogCrBl').html(data);
+                            $('#modCrBl').modal('show');
+                        });
+                    });
+                })
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".logon").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogLogonContent').html(data);
+                    $('#modLogon').modal('show');
+                });
+            });
+        })
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".register").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogRegisterContent').html(data);
+                    $('#modRegister').modal('show');
+                });
+            });
+        })
+            </script>
+            <div>
+                @RenderBody()
+            </div>
+            @Scripts.Render("~/Scripts/js")
+        </div>
+    </div>
+</body>
+</html>

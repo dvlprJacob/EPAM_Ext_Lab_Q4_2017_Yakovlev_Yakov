@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PB.PL.Models.Lists.ArticleListVM>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string linkName = string.Empty;
+    string user = (User.Identity != null && !string.IsNullOrWhiteSpace(User.Identity.Name)) ? User.Identity.Name : "Guest";
+    bool isMyBlog = false;
+    if (Model.Count() != 0)
+    {
+        isMyBlog = (Html.Action("IsUserBlog", "User", Model.First().BlogID).ToHtmlString() == "true");
+    }
+}
+@Scripts.Render("~/Content/css")
+@if (Model == null && !string.IsNullOrWhiteSpace(User.Identity.Name) && User.Identity!=null)
+{
+    linkName = "Creat first article";
+}
+else
+{
+    linkName = "Creat new article";
+}
+    <div class="panel-default">
+        <div class="container">
+            @{
+                if(!isMyBlog)
+                {
+                    <div class="btn-link">
+                        @Html.ActionLink(linkName, "CreateArticle", "Article", new { blogId = Model.First().BlogID }, FormMethod.Get);
+                    </div>
+                    <div class="btn-link">
+                        @Html.ActionLink("Edit blog title", "Edit", "Blog", null, FormMethod.Get);
+                    </div>
+                }
+            }
+            <div class="jumbotron">
+                @foreach (var item in Model)
+                {
+                    <div class="panel-info">
+                        @Html.DisplayFor(modelItem => item.Title)
+                        <div class="panel-info">
+                            @Html.RouteLink("Read more", new { controller = "Article", action = "Index", id = item.ArticleID })
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/js")

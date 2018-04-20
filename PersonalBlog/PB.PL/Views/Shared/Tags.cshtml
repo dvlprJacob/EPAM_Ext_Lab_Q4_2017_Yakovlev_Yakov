@@ -1,0 +1,8 @@
+﻿@model IEnumerable<PB.PL.Models.Lists.TagListVM>
+
+@foreach(var tag in Model)
+{
+    <span>
+        @Html.ActionLink(tag.TagName,"#")
+    </span>
+}

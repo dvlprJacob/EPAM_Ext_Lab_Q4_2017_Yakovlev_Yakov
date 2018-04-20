@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PB.PL.Models.Lists.BlogListVM>
+
+@{
+    ViewBag.Title = "Blog list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Content/css")
+<div class="panel-default">
+    <div class="panel-body">
+        <div class="jumbotron">
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-left">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </div>
+                    </div>
+                    <div class="top-right">
+                        <i>@Html.RouteLink("See articles", new { controller = "Blog", action = "Index", id = item.BlogID })</i>
+                    </div>
+                </div>
+            }
+        </div>
+        </div>
+    @Scripts.Render("~/Scripts/js")
+    </div>

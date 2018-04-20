@@ -1,0 +1,23 @@
+﻿@model PB.PL.Models.UserVM
+
+@{
+    ViewBag.Title = Model.Login;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="dl-horizontal">
+        <div class="table">
+            <div class="tab-content">
+                <span>@Html.DisplayNameFor(model => model.FirstName) : @Html.DisplayFor(model => model.FirstName)</span>
+                <span>@Html.DisplayNameFor(model => model.LastName) : @Html.DisplayFor(model => model.LastName)</span>
+                <span>@Html.DisplayNameFor(model => model.Email) : @Html.DisplayNameFor(model => model.Email)</span>
+                <span>@Html.DisplayNameFor(model => model.Phone) : @Html.DisplayFor(model => model.Phone)</span>
+                <span>@Html.DisplayNameFor(model => model.RegistrationDate) : @Html.DisplayFor(model => model.RegistrationDate)</span>
+            </div>
+        </div> 
+    </div>
+</div>
+<p>
+    <a href="@Url.Action("Edit","User")">Edit</a>
+</p>
