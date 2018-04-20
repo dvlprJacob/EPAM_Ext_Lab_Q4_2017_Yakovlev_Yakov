@@ -423,7 +423,7 @@
                     command.Parameters.AddWithValue("@quantity", newOrder.Quantity);
                     command.Parameters.AddWithValue("@discount", newOrder.Discount);
 
-                    command.CommandText = "INSERT INTO[dbo].[Orders]([CustomerID], [EmployeeID], [ShipName], [ShipAddress],[ShipCity], [ShipRegion], [ShipPostalCode], [ShipCountry]) " +
+                    command.CommandText = "INSERT INTO [dbo].[Orders]([CustomerID], [EmployeeID], [ShipName], [ShipAddress],[ShipCity], [ShipRegion], [ShipPostalCode], [ShipCountry]) " +
                             "(SELECT @custId, (SELECT TOP 1 SupplierID FROM[dbo].[Products] " +
                             "WHERE ProductId = @productId ORDER BY UnitPrice), " +
                             "custs.CompanyName, custs.Address, custs.City, custs.Region, custs.PostalCode, custs.Country FROM[dbo].[Customers] AS custs " +
